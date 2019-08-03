@@ -89,7 +89,8 @@ func _ready():
 	
 	#DEBUG
 	var cor_maze = RogueGen.GenerateCorridorMaze(20,20,3)
-	print(cor_maze)
+	for row in cor_maze:
+		print(row)
 	
 	pass
 

@@ -304,8 +304,8 @@ func GenerateBank(map_size):
 
 #Generate Corridor Maze
 #Inspired by moititi
+# 0 - Empty Space
 # 1 - Brick Space
-# 2 - Empty Space
 # Access maze[row][col]
 func GenerateCorridorMaze(num_rows, num_cols, num_inner_walls):
 	
@@ -324,11 +324,11 @@ func GenerateCorridorMaze(num_rows, num_cols, num_inner_walls):
 	
 	#Need to place walls in the middle of the empty rows (have 0s)
 	#And also keep track of them!
-	var row_wall_locs = [] #list of positions where the walls are (doesn't have any for brick rows)
+	var empty_row_wall_locs = [] #2d list of positions where the walls are (doesn't have any for brick rows)
 	for i in range(num_rows): #iterate over the rows
 		if i%2!=0: #Skip the row if it's a brick wall
 			continue 
-		else: #otherwise, Now, we're accessing the empty row
+		else: #otherwise, Now, we're accessing an empty row
 			var walls = [] #list of col indices where wall is
 			for w in range(num_inner_walls):
 				# w + randi()%num_inner_walls/num_rows
@@ -337,8 +337,54 @@ func GenerateCorridorMaze(num_rows, num_cols, num_inner_walls):
 				walls.append(wall_col)
 				#Finally, set the tile to be a wall
 				maze[i][wall_col] = 1
-			row_wall_locs.append(walls)
+			empty_row_wall_locs.append(walls)
+	#empty_row_wall_locs will have list (for each row) of list
+	
+	#Now with walls placed, we can decide where to put openings in brick walls
+	for i in range(num_rows):
+		if i%2==0: #Skip the row if it's an empty row
+			continue
+		else: #otherwise, now, we're accessing a brick row
+			#Determine where the walls were in the adjacent empty rows...
+			var adj_walls = [] #list of col indices where a wall appears in adjacent rows
+			#Add the wall col_indices from empty row, above (if applicable)
+			var above_row_index = floor(i/2.0)
+			if above_row_index >= 0: #bounds check
+				for w in empty_row_wall_locs[above_row_index]: #Copy all the indices 
+					adj_walls.append(w) 
+			#Add the wall col_indices from the empty row, below (if applicable)
+			var below_row_index = ceil(i/2.0)
+			if below_row_index < empty_row_wall_locs.size(): #bounds check
+				for w in empty_row_wall_locs[below_row_index]: #Copy all the indices
+					adj_walls.append(w)
+			#Now adj_walls has the full list of col indices of adj walls
+			#But we should sort them...
+			adj_walls.sort_custom(self, "int_array_sort")
+			
+			#Now we place random openings between each wall
+			#Before First
+			if(adj_walls[0] > 1): #make sure there's enough room
+				var d = randi()%(adj_walls[0]-1) + 1#Pick a random spot for it
+				maze[i][d] = 0 #set the opening in the maze
+			#Between Intermediate Walls
+			for c in range(adj_walls.size()-1):
+				if(adj_walls[c+1] - adj_walls[c]) > 1: #Make sure there's enough room
+					var d = randi()%(adj_walls[c+1] - adj_walls[c] - 1) + adj_walls[c] + 1#pick a random spot for it
+					maze[i][d] = 0 #set the opening in the maze
+			#After Last
+			if(num_cols - adj_walls[adj_walls.size()-1]) > 1:
+				var d = randi()%(num_cols - adj_walls[adj_walls.size()-1] - 1) + adj_walls[adj_walls.size()-1] + 1
+				maze[i][d] = 0 #set the opening in the maze
 	
 	return(maze)
 
-
+#Utility function used to sort int array
+func int_array_sort(a,b):
+	return a < b
+	
+	
+	
+	
+	
+	
+	
