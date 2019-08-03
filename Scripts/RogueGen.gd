@@ -301,3 +301,44 @@ func GenerateBank(map_size):
 	
 	return map
 	
+
+#Generate Corridor Maze
+#Inspired by moititi
+# 1 - Brick Space
+# 2 - Empty Space
+# Access maze[row][col]
+func GenerateCorridorMaze(num_rows, num_cols, num_inner_walls):
+	
+	randomize()
+	
+	var maze = [] #2D Array, with maze tiles to return
+	#Intialize array with alternating rows of 0 and 1
+	for i in range(num_rows):
+		maze.append([])
+		if i%2 == 0: #if even
+			for j in range(num_cols):
+				maze[i].append(0)
+		else: #if odd
+			for j in range(num_cols):
+				maze[i].append(1)
+	
+	#Need to place walls in the middle of the empty rows (have 0s)
+	#And also keep track of them!
+	var row_wall_locs = [] #list of positions where the walls are (doesn't have any for brick rows)
+	for i in range(num_rows): #iterate over the rows
+		if i%2!=0: #Skip the row if it's a brick wall
+			continue 
+		else: #otherwise, Now, we're accessing the empty row
+			var walls = [] #list of col indices where wall is
+			for w in range(num_inner_walls):
+				# w + randi()%num_inner_walls/num_rows
+				var wall_col #this is the col index of the tile that (will) become(s) a wall
+				wall_col = w*(num_cols/num_inner_walls) + randi()%((num_cols/num_inner_walls) - 1)
+				walls.append(wall_col)
+				#Finally, set the tile to be a wall
+				maze[i][wall_col] = 1
+			row_wall_locs.append(walls)
+	
+	return(maze)
+
+

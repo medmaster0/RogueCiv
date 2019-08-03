@@ -87,6 +87,10 @@ func _ready():
 	#DEBUG -> inject random creature into caveMap
 	#$CaveMap.enterMainCreature(map_creatures[randi()%map_creatures.size()])
 	
+	#DEBUG
+	var cor_maze = RogueGen.GenerateCorridorMaze(20,20,3)
+	print(cor_maze)
+	
 	pass
 
 func _process(delta):
