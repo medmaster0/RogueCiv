@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 MedAlgo="*res://Scripts/MedAlgo.gd"
 RogueGen="*res://Scripts/RogueGen.gd"
+BuildingGen="*res://Scripts/BuildingGen.gd"
 
 [display]
 

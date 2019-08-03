@@ -88,9 +88,12 @@ func _ready():
 	#$CaveMap.enterMainCreature(map_creatures[randi()%map_creatures.size()])
 	
 	#DEBUG
-	var cor_maze = RogueGen.GenerateCorridorMaze(20,20,3)
-	for row in cor_maze:
-		print(row)
+#	var cor_maze = RogueGen.GenerateCorridorMaze(20,20,3)
+#	for row in cor_maze:
+#		print(row)
+
+	#DEBUG
+	var buliding_plot_map = BuildingGen.gen_building_plot_map()
 	
 	pass
 
