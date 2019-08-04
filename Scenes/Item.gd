@@ -8,6 +8,16 @@ extends Node2D
 # 0 - WEED
 # 1 - STONE
 # 2 - LADDER
+# 3 - CAN
+# 4 - LADDER HOLE
+# 5 - FLAG
+######## BUILDING ITEMS
+# 101 - FLOOR
+# 102 - WALL
+# 103 - DOOR
+# 104 - LADDER (HOLE)
+# 105 - FLAG
+# 106 - DESK
 
 #LOAD UP ALL THE SPRITES>>>>
 
@@ -22,6 +32,19 @@ var canSeco = preload("res://Tiles//item//canSeco.png")
 var ladderHolePrim = preload("res://Tiles//scenery//ladderHolePrim.png")
 var flagPrim = preload("res://Tiles//scenery//flagPrim.png")
 var flagSeco = preload("res://Tiles//scenery//flagSeco.png")
+
+#Building Resources Load
+var floorPrim = preload("res://Tiles//scenery//adobePrim.png")
+var floorSeco = preload("res://Tiles//scenery//adobeSeco.png")
+var wallPrim = preload("res://Tiles//scenery//brickPrim.png")
+var wallSeco = preload("res://Tiles//scenery//brickSeco.png")
+var doorPrim = preload("res://Tiles//scenery//doorPrim.png")
+var doorSeco = preload("res://Tiles//scenery//doorSeco.png")
+#var ladderPrim
+#var flagPrim
+#var flagSeco
+
+
 
 #Class Variables
 var primColor
@@ -92,7 +115,7 @@ func setTile(in_tile_index):
 			$Seco.texture = canSeco
 			$Tert.texture = null
 		4:
-			#LADDER HOLD
+			#LADDER HOLE
 			item_name = "ladder"
 			$Prim.texture = ladderHolePrim
 			$Seco.texture = null
@@ -103,6 +126,40 @@ func setTile(in_tile_index):
 			$Prim.texture = flagPrim
 			$Seco.texture = flagSeco
 			$Tert.texture = null
+		######BUILDING SHIT
+		101:
+			#FLOOR
+			item_name = "floor"
+			$Prim.texture = floorPrim
+			$Seco.texture = floorSeco
+			$Tert.texture = null
+		102:
+			#WALL
+			item_name = "wall"
+			$Prim.texture = wallPrim
+			$Seco.texture = wallSeco
+			$Tert.texture = null
+		103:
+			#DOOR
+			item_name = "door"
+			$Prim.texture = doorPrim
+			$Seco.texture = doorSeco
+			$Tert.texture = null
+		104:
+			#LADDER HOLE
+			item_name = "ladder down"
+			$Prim.texture = ladderHolePrim
+			$Seco.texture = null
+			$Tert.texture = null
+		105:
+			#FLAG
+			item_name = "flag"
+			$Prim.texture = flagPrim
+			$Seco.texture = flagSeco
+			$Tert.texture = null
+
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

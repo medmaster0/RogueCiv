@@ -138,6 +138,11 @@ func _ready():
 
 	#DEBUG
 	var buliding_plot_map = BuildingGen.gen_building_plot_map()
+	print(map_width)
+	print(map_height)
+	
+	#Create a building
+	BuildingGen.put_items_building_plot(self, 8,0,1)
 	
 	pass
 

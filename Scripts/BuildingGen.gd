@@ -1,4 +1,6 @@
 extends Node
+
+
 ######
 ######
 ##IMPORTANT NOTE: These building maps are accessed: var map[ROW][COL]
@@ -69,6 +71,8 @@ func gen_building_plot_map():
 		print(row)
 	
 	
+# UTILITY #######
+#
 #Will put a rectangle in the map
 # Input:
 # The in_map to be written to
@@ -87,6 +91,12 @@ func place_rectangle_in_map(in_map, x_coord, y_coord, width, height, tile_index)
 	
 	
 	
+	
+##Function that puts the building items in a Main Game Scene
+# The game_scene will put the items as children
+# But will also keep track of them in map_items[][][] 3D indexed arrays
+func put_items_building_plot(game_scene, x_coord, y_coord, z_coord):
+	var Item = load("res://Scenes//Item.tscn") #Used as a template for making items
 	
 	
 	
