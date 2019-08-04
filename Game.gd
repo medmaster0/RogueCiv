@@ -10,13 +10,20 @@ export (PackedScene) var CaveMap;
 
 var map_creatures = []; #list of all the creatures on map
 var num_creatures = 12; #number of all creatures on map..
-#One ladder and flag correspond to each creature
-var map_ladders = [] #list of all ladders on map (and has a flag next to it)
-var map_flags = [] #list of the flags on the map
 
-var map_items = []; #list of all items on the map... 
+#One ladder and flag correspond to each creature
+#var map_ladders = [] #list of all ladders on map (and has a flag next to it)
+#var map_flags = [] #list of the flags on the map
+#var map_items = []; #list of all items on the map... 
 #TODO: should be indexed by position...
 
+################
+### 3-D Indexed ITEM arrays -> Really a 4-D list
+#######
+### Access: map_items[x_coord][y_coord][z-_coord] = {list of Item scenes}
+var map_items = [] #items that can be picked up...
+var map_buildings_top = [] #building items that should be built above everything
+var map_buildings_bot = [] #building items that should be built below everything
 
 #STANDARD GAME SCENE GLOBALS
 var world_width #the size of the map (in pixels)
@@ -26,9 +33,11 @@ var map_height #the size of the map (in cells/tiles) SCREEN DIMS!!
 var cell_size #the amount of pixels in a cell/tile
 #BROADER WORLD VARS
 var max_x_map = 64
-var max_y_map = 29
+var max_y_map = 29 #How far down the map goes before hitting interface windows
 var min_x_map = 0
 var min_y_map = 0
+var max_z_map = 20 #How high the map goes
+var min_z_map = 0 #The lowest level
 
 #More Globals
 var back_col #will be constantly changing (in increments though since it's expensive)
@@ -61,14 +70,49 @@ func _ready():
 		add_child(temp_cre)
 		map_creatures.append(temp_cre)
 	
-	#Make a bunch of rando items
-	for i in range(10):
-		var temp_item = Item.instance()
-		var temp_map_position = Vector2( floor(rand_range(min_x_map,max_x_map)) ,  floor(rand_range(min_y_map,max_y_map))  )
-		var temp_world_position = $TileMap.map_to_world(temp_map_position);
-		temp_item.position = temp_world_position
-		add_child(temp_item)
-		map_items.append(temp_item)
+	#Initialize Item Arrays
+	#MAP ITEMS
+	for i in range(max_x_map):
+		var x_list = []
+		for j in range(max_y_map):
+			var y_list = []
+			for z in range(max_z_map):
+				var z_list = []
+				y_list.append(z_list)
+			x_list.append(y_list)
+		map_items.append(x_list)
+	#BUILDINGS BOTTOM
+	for i in range(max_x_map):
+		var x_list = []
+		for j in range(max_y_map):
+			var y_list = []
+			for z in range(max_z_map):
+				var z_list = []
+				y_list.append(z_list)
+			x_list.append(y_list)
+		map_buildings_bot.append(x_list)
+	#BUILDINGS TOP
+	for i in range(max_x_map):
+		var x_list = []
+		for j in range(max_y_map):
+			var y_list = []
+			for z in range(max_z_map):
+				var z_list = []
+				y_list.append(z_list)
+			x_list.append(y_list)
+		map_buildings_top.append(x_list)
+		
+
+
+				
+#	#Make a bunch of rando items
+#	for i in range(10):
+#		var temp_item = Item.instance()
+#		var temp_map_position = Vector2( floor(rand_range(min_x_map,max_x_map)) ,  floor(rand_range(min_y_map,max_y_map))  )
+#		var temp_world_position = $TileMap.map_to_world(temp_map_position);
+#		temp_item.position = temp_world_position
+#		add_child(temp_item)
+#		map_items.append(temp_item)
 		
 	#Create a Base for each Creature -> a ladder and flag
 #	for i in range(num_creatures):
