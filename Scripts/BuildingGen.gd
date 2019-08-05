@@ -67,8 +67,7 @@ func gen_building_plot_map():
 	building_map_plot[3][1] = 3
 	building_map_plot[4][6] = 3
 	
-	for row in building_map_plot:
-		print(row)
+	return(building_map_plot)
 	
 	
 # UTILITY #######
@@ -95,9 +94,125 @@ func place_rectangle_in_map(in_map, x_coord, y_coord, width, height, tile_index)
 ##Function that puts the building items in a Main Game Scene
 # The game_scene will put the items as children
 # But will also keep track of them in map_items[][][] 3D indexed arrays
-func put_items_building_plot(game_scene, x_coord, y_coord, z_coord):
+# Also map_buildings_top and map_buildings_bot
+# The x_coord and y_coord are global coords of top left corner
+# But assume they are aligned on tiles!!!
+func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord):
 	var Item = load("res://Scenes//Item.tscn") #Used as a template for making items
 	
+	var temp_item #the temp item used to create the items
+	var temp_x_coord_global #the global position of created item
+	var temp_y_coord_global #the global position of created item
+	var temp_x_coord_map #the map position of created item
+	var temp_y_coord_map #the map position of created item
+	var tile_size = 16 #How many global pixels wide/high a tile is....
+	var building_map = gen_building_plot_map()
 	
+	#COLORS>..... SHOULD handle this better
+	var floorPrim = Color(randf(), randf(), randf())
+	var floorSeco = Color(randf(), randf(), randf())
+	var wallPrim = Color(randf(), randf(), randf())
+	var wallSeco = Color(randf(), randf(), randf())
+	var doorPrim = Color(randf(), randf(), randf())
+	var doorSeco = Color(randf(), randf(), randf())
+	var flagPrim = Color(randf(), randf(), randf())
+	var flagSeco = Color(randf(), randf(), randf())
+	var ladderPrim = Color(randf(), randf(), randf())
 	
-	
+	#Read through the map - NOTE THE ORDER OF ROWS/COLS!!!
+	for i in range(building_map.size()): #rows, y-dim
+		for j in range(building_map[i].size()): #cols, x-dim
+			#Figure out coords
+			temp_x_coord_map = j + (x_coord_global/tile_size)
+			temp_y_coord_map = i + (y_coord_global/tile_size)
+			temp_x_coord_global = tile_size * temp_x_coord_map
+			temp_y_coord_global = tile_size * temp_y_coord_map
+			
+			#Choose Item type and Building Array (Top or Bot?)
+			#	0 - FLOOR
+			#	1 - WALL
+			#	2 - BALCONY
+			#	3 - DOOR
+			#	4 - LADDER
+			#	5 - FLAG
+			#	6 - DESK
+			match(building_map[i][j]):
+				0:  #FLOOR
+					#Create floor item
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(101)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(floorPrim)
+					temp_item.SetSecoColor(floorSeco)
+				1:  #WALL
+					#Create wall item
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(102)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(wallPrim)
+					temp_item.SetSecoColor(wallSeco)
+#				2:  #BALCONY
+##					temp_item.queue_free()
+				3:  #DOOR
+					#Create Floor Item first
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(101)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(floorPrim)
+					temp_item.SetSecoColor(floorSeco)
+					#Then Create Door Item
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(103)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(doorPrim)
+					temp_item.SetSecoColor(doorSeco)
+				4:  #LADDER
+					#Create Floor Item first
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(101)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(floorPrim)
+					temp_item.SetSecoColor(floorSeco)
+					#Then Create Ladder Item
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(104)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(ladderPrim)
+				5:  #FLAG
+					#Create floor item first
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(101)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(floorPrim)
+					temp_item.SetSecoColor(floorSeco)
+					#Then Create Flag Item
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(105)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(flagPrim)
+					temp_item.SetSecoColor(flagSeco)
+				6:  #DESK
+					#Create floor item first
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(101)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(floorPrim)
+					temp_item.SetSecoColor(floorSeco)

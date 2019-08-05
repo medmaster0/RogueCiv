@@ -22,8 +22,10 @@ var num_creatures = 12; #number of all creatures on map..
 #######
 ### Access: map_items[x_coord][y_coord][z-_coord] = {list of Item scenes}
 var map_items = [] #items that can be picked up...
-var map_buildings_top = [] #building items that should be built above everything
-var map_buildings_bot = [] #building items that should be built below everything
+#var map_buildings_top = [] #building items that should be built above everything
+#var map_buildings_bot = [] #building items that should be built below everything
+var map_buildings = [] #building items (no diff between top and bottom) -> Always under creature
+var neighboorhood_layout #will hold the neighborhood layout data
 
 #STANDARD GAME SCENE GLOBALS
 var world_width #the size of the map (in pixels)
@@ -72,37 +74,46 @@ func _ready():
 	
 	#Initialize Item Arrays
 	#MAP ITEMS
-	for i in range(max_x_map):
+	for i in range(max_x_map+16):
 		var x_list = []
-		for j in range(max_y_map):
+		for j in range(max_y_map+16):
 			var y_list = []
-			for z in range(max_z_map):
+			for z in range(max_z_map+16):
 				var z_list = []
 				y_list.append(z_list)
 			x_list.append(y_list)
 		map_items.append(x_list)
-	#BUILDINGS BOTTOM
-	for i in range(max_x_map):
+#	#BUILDINGS BOTTOM
+#	for i in range(max_x_map):
+#		var x_list = []
+#		for j in range(max_y_map):
+#			var y_list = []
+#			for z in range(max_z_map):
+#				var z_list = []
+#				y_list.append(z_list)
+#			x_list.append(y_list)
+#		map_buildings_bot.append(x_list)
+#	#BUILDINGS TOP
+#	for i in range(max_x_map):
+#		var x_list = []
+#		for j in range(max_y_map):
+#			var y_list = []
+#			for z in range(max_z_map):
+#				var z_list = []
+#				y_list.append(z_list)
+#			x_list.append(y_list)
+#		map_buildings_top.append(x_list)
+	#BUILDINGS
+	for i in range(max_x_map+16):
 		var x_list = []
-		for j in range(max_y_map):
+		for j in range(max_y_map+16):
 			var y_list = []
-			for z in range(max_z_map):
+			for z in range(max_z_map+16):
 				var z_list = []
 				y_list.append(z_list)
 			x_list.append(y_list)
-		map_buildings_bot.append(x_list)
-	#BUILDINGS TOP
-	for i in range(max_x_map):
-		var x_list = []
-		for j in range(max_y_map):
-			var y_list = []
-			for z in range(max_z_map):
-				var z_list = []
-				y_list.append(z_list)
-			x_list.append(y_list)
-		map_buildings_top.append(x_list)
+		map_buildings.append(x_list)
 		
-
 
 				
 #	#Make a bunch of rando items
@@ -114,19 +125,6 @@ func _ready():
 #		add_child(temp_item)
 #		map_items.append(temp_item)
 		
-	#Create a Base for each Creature -> a ladder and flag
-#	for i in range(num_creatures):
-#		while(true):
-#			#Pick a potential location for each ladder and check if it is eligible
-#			var potential_map_position = Vector2(randi()%max_x_map, randi()%max_y_map)
-#			#Check the new position among all other flags and ladders
-#			for check_base_item in map_flags + map_ladders:
-#				var check_map_position = $TileMap.world_to_map(check_base_item.position)
-#				if check_map_position == potential_map_position:
-#					print("Ladder on existing ladder.... Try again")
-#				else:
-#					continue
-				
 	
 	#DEBUG -> inject random creature into caveMap
 	#$CaveMap.enterMainCreature(map_creatures[randi()%map_creatures.size()])
@@ -135,16 +133,26 @@ func _ready():
 #	var cor_maze = RogueGen.GenerateCorridorMaze(20,20,3)
 #	for row in cor_maze:
 #		print(row)
-
-	#DEBUG
-	var buliding_plot_map = BuildingGen.gen_building_plot_map()
-	print(map_width)
-	print(map_height)
 	
-	#Create a building
-	BuildingGen.put_items_building_plot(self, 8,0,1)
+	#Generate Neighborhood Layout
+	neighboorhood_layout = RogueGen.GenerateCorridorMaze(8,5,1)
+	print(neighboorhood_layout)
 	
-	pass
+#	#Create a building
+#	BuildingGen.put_items_building_plot(self, 8,0,1)
+	
+	#Construct the neighboorhood
+	var tiles_per_plot = 8 #how many tiles are on each building plot
+	for i in neighboorhood_layout.size(): #the x dim
+		for j in  neighboorhood_layout[i].size():  #the y dim
+			match(neighboorhood_layout[i][j]):
+				0:
+					pass
+				1:
+					var temp_x_coord = i * $TileMap.cell_size.x * tiles_per_plot
+					var temp_y_coord = j * $TileMap.cell_size.y * tiles_per_plot
+					BuildingGen.put_items_building_plot(self, temp_x_coord, temp_y_coord, 0)
+	pass 
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
