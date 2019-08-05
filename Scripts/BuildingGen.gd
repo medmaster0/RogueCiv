@@ -146,6 +146,8 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
 					temp_item.SetPrimColor(floorPrim)
 					temp_item.SetSecoColor(floorSeco)
+					temp_item.find_node("SelectButton").visible = false
+					temp_item.z_index = z_coord - 1
 				1:  #WALL
 					#Create wall item
 					temp_item = Item.instance()
@@ -155,6 +157,8 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
 					temp_item.SetPrimColor(wallPrim)
 					temp_item.SetSecoColor(wallSeco)
+					temp_item.find_node("SelectButton").visible = false
+					temp_item.z_index = z_coord - 1
 #				2:  #BALCONY
 ##					temp_item.queue_free()
 				3:  #DOOR
@@ -166,6 +170,8 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
 					temp_item.SetPrimColor(floorPrim)
 					temp_item.SetSecoColor(floorSeco)
+					temp_item.find_node("SelectButton").visible = false
+					temp_item.z_index = z_coord - 1
 					#Then Create Door Item
 					temp_item = Item.instance()
 					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
@@ -174,6 +180,7 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
 					temp_item.SetPrimColor(doorPrim)
 					temp_item.SetSecoColor(doorSeco)
+					temp_item.z_index = z_coord - 1
 				4:  #LADDER
 					#Create Floor Item first
 					temp_item = Item.instance()
@@ -183,6 +190,8 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
 					temp_item.SetPrimColor(floorPrim)
 					temp_item.SetSecoColor(floorSeco)
+					temp_item.find_node("SelectButton").visible = false
+					temp_item.z_index = z_coord - 1
 					#Then Create Ladder Item
 					temp_item = Item.instance()
 					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
@@ -190,6 +199,7 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 					temp_item.setTile(104)
 					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
 					temp_item.SetPrimColor(ladderPrim)
+					temp_item.z_index = z_coord - 1
 				5:  #FLAG
 					#Create floor item first
 					temp_item = Item.instance()
@@ -199,6 +209,8 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
 					temp_item.SetPrimColor(floorPrim)
 					temp_item.SetSecoColor(floorSeco)
+					temp_item.find_node("SelectButton").visible = false
+					temp_item.z_index = z_coord - 1
 					#Then Create Flag Item
 					temp_item = Item.instance()
 					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
@@ -207,6 +219,7 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
 					temp_item.SetPrimColor(flagPrim)
 					temp_item.SetSecoColor(flagSeco)
+					temp_item.z_index = z_coord - 1
 				6:  #DESK
 					#Create floor item first
 					temp_item = Item.instance()
@@ -216,3 +229,5 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
 					temp_item.SetPrimColor(floorPrim)
 					temp_item.SetSecoColor(floorSeco)
+					temp_item.find_node("SelectButton").visible = false
+					temp_item.z_index = z_coord - 1

@@ -15,9 +15,7 @@ centered = false
 centered = false
 
 [node name="SelectButton" type="Button" parent="."]
-margin_left = -6.0
-margin_top = -6.0
-margin_right = 22.0
-margin_bottom = 22.0
+margin_right = 16.0
+margin_bottom = 16.0
 flat = true
 [connection signal="pressed" from="SelectButton" to="." method="_on_SelectButton_pressed"]

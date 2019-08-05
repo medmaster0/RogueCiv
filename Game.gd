@@ -129,17 +129,8 @@ func _ready():
 	#DEBUG -> inject random creature into caveMap
 	#$CaveMap.enterMainCreature(map_creatures[randi()%map_creatures.size()])
 	
-	#DEBUG
-#	var cor_maze = RogueGen.GenerateCorridorMaze(20,20,3)
-#	for row in cor_maze:
-#		print(row)
-	
 	#Generate Neighborhood Layout
 	neighboorhood_layout = RogueGen.GenerateCorridorMaze(8,5,1)
-	print(neighboorhood_layout)
-	
-#	#Create a building
-#	BuildingGen.put_items_building_plot(self, 8,0,1)
 	
 	#Construct the neighboorhood
 	var tiles_per_plot = 8 #how many tiles are on each building plot
