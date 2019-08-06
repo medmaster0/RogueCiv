@@ -309,8 +309,8 @@ func isVectorInSet(search_coords, search_set):
 #Utility function that check if a coordinate has an item of certain index in it...
 #Looks in and iterates an item list at the position 
 #returns true if an item in it has the desired index
-func is_tile_index_at(item_list, tile_index, xcoord, ycoord, zcoord):
-	for item in item_list[xcoord][ycoord][zcoord]:
+func is_tile_index_at(item_list, tile_index, check_coord):
+	for item in item_list[check_coord.x][check_coord.y][check_coord.z]:
 		if item.tile_index == tile_index:
 			return(true)
 	#If made it to end, no match
@@ -318,12 +318,179 @@ func is_tile_index_at(item_list, tile_index, xcoord, ycoord, zcoord):
 
 #Utility Function that can check if multiple tile indices are at a coord
 # (The same as above but with a list of tile_indices
-func are_tile_indices_at(item_list, tile_indices, xcoord, ycoord, zcoord):
+# Also using a Vector3 now for check position
+func are_tile_indices_at(item_list, tile_indices, check_coord):
 	for tile_index in tile_indices:
-		if is_tile_index_at(item_list,tile_index,xcoord,ycoord,zcoord)==true:
+		if is_tile_index_at(item_list,tile_index,check_coord)==true:
 			return(true)
 	#If got to here, no match
 	return(false)
+
+#Now ANother A star function!!!!
+# But operates on a 3d indexed item list
+#A* Path Finding 
+#returns an array of steps to follow between the two points
+#returns (9999,9999) if no path 
+#input two vectors you want to search for (map coords)
+#
+#Also need 3D indexed item list that you search on
+#
+#How it works:
+#We have two sets, open and closed set
+func find_path_items(map_start, map_end, item_map):
+
+	#Function vars
+	var open_set = []
+	var closed_set = []
+	var blocked_tiles = [102] #item tile indices that correspond to obstacles
+
+	#Convert the coordinates to map_coords
+#	var start = tile_map.world_to_map(global_start)
+#	var end = tile_map.world_to_map(global_end)
+	var start = map_start
+	var end = map_end
+
+
+	#Create the FIRST node
+	var temp_node = {
+		"g" : 0,
+		"h" : abs(start.x - end.x) + abs(start.y - end.y),
+		"f" : abs(start.x - end.x) + abs(start.y - end.y),
+		"coords" : start,
+		"last_node" : null
+	}
+	#And add it to the open_set
+	open_set.append(temp_node)
+
+	#Now an infinite loop that only breaks once we find our target...
+	while(true):
+
+		#print(open_set.size())
+
+		#EACH ITERATION...
+		#find the node in open_set with the least f (next node)
+		var least_f = 9999 #temp var to keep track of what the lowest f is
+		var next_node #the temp var for the node that has the lowest f
+		for node in open_set:
+			if node.f <= least_f: #use equals so we get the last one checked (added to open set)
+				next_node = node
+				least_f = node.f
+		#next_node now points to the node with the lowest f
+
+		#if there is no next_node (we got through open set), then just exit
+		if next_node == null:
+			print("got to end of open set and no target")
+			return(false)
+
+		#remove that node from open_set (so we don't check it again)
+		open_set.erase(next_node)
+
+		#Now, add each of next_node's neighbors (if walkable)
+		var neighbor_coords #will temporaily hold the neighbor coords to check
+		#RIGHT
+		neighbor_coords = Vector3(next_node.coords.x + 1, next_node.coords.y, next_node.coords.z)
+		if are_tile_indices_at(item_map, blocked_tiles, next_node.coords) == false:
+			#Make a new node (with calculations) and add to set
+			var temp_x = next_node.coords.x+1
+			var temp_y = next_node.coords.y
+			if Vector3(temp_x,temp_y,0) == end: #check if reached target
+				return( path_from_set(next_node,end) )
+				break
+
+			#Check if node coords have already been entered in closed_set
+			if isVectorInSet(Vector3(temp_x,temp_y,0), closed_set) == false: #If not closed yet
+				#Then add a new node for those coords
+				var neighbor_node = {
+					"g" : next_node.g + 1,
+					"h" : abs(end.x - temp_x) + abs(end.y - temp_y), #Manhattan Distance"
+					"f" : "not set yet",
+					"coords" : Vector3(temp_x, temp_y, 0),
+					"last_node" : next_node
+				}
+				neighbor_node.f = neighbor_node.g + neighbor_node.h #Now calculate f
+				open_set.append(neighbor_node)
+
+		#LEFT
+		neighbor_coords = Vector3(next_node.coords.x - 1, next_node.coords.y, next_node.coords.z)
+		if are_tile_indices_at(item_map, blocked_tiles, next_node.coords) == false:
+			#Make a new node (with calculations) and add to set
+			var temp_x = next_node.coords.x-1
+			var temp_y = next_node.coords.y
+			if Vector3(temp_x,temp_y,0) == end: #check if reached target
+				return( path_from_set(next_node,end) )
+				break
+
+			#Check if node coords have already been entered in closed_set
+			if isVectorInSet(Vector3(temp_x,temp_y,0), closed_set) == false: #If not closed yet
+				#Then add a new node for those coords
+				var neighbor_node = {
+					"g" : next_node.g + 1,
+					"h" : abs(end.x - temp_x) + abs(end.y - temp_y), #Manhattan Distance"
+					"f" : "not set yet",
+					"coords" : Vector3(temp_x, temp_y, 0),
+					"last_node" : next_node
+				}
+				neighbor_node.f = neighbor_node.g + neighbor_node.h #Now calculate f
+				open_set.append(neighbor_node)
+
+		#UP
+		neighbor_coords = Vector3(next_node.coords.x, next_node.coords.y - 1, next_node.coords.z)
+		if are_tile_indices_at(item_map, blocked_tiles, next_node.coords) == false:
+			#Make a new node (with calculations) and add to set
+			var temp_x = next_node.coords.x
+			var temp_y = next_node.coords.y-1
+			if Vector3(temp_x,temp_y,0) == end: #check if reached target
+				return( path_from_set(next_node,end) )
+				break
+
+			#Check if node coords have already been entered in closed_set
+			if isVectorInSet(Vector3(temp_x,temp_y,0), closed_set) == false: #If not closed yet
+				#Then add a new node for those coords
+				var neighbor_node = {
+					"g" : next_node.g + 1,
+					"h" : abs(end.x - temp_x) + abs(end.y - temp_y), #Manhattan Distance"
+					"f" : "not set yet",
+					"coords" : Vector3(temp_x, temp_y, 0),
+					"last_node" : next_node
+				}
+				neighbor_node.f = neighbor_node.g + neighbor_node.h #Now calculate f
+				open_set.append(neighbor_node)
+
+		#DOWN
+		neighbor_coords = Vector3(next_node.coords.x, next_node.coords.y + 1, next_node.coords.z)
+		if are_tile_indices_at(item_map, blocked_tiles, next_node.coords) == false:
+			#Make a new node (with calculations) and add to set
+			var temp_x = next_node.coords.x
+			var temp_y = next_node.coords.y+1
+			if Vector3(temp_x,temp_y,0) == end: #check if reached target
+				return( path_from_set(next_node, end) )
+				break
+
+			#Check if node coords have already been entered in closed_set
+			if isVectorInSet(Vector3(temp_x,temp_y,0), closed_set) == false: #If not closed yet
+				#Then add a new node for those coords
+				var neighbor_node = {
+					"g" : next_node.g + 1,
+					"h" : abs(end.x - temp_x) + abs(end.y - temp_y), #Manhattan Distance"
+					"f" : "not set yet",
+					"coords" : Vector3(temp_x, temp_y, 0),
+					"last_node" : next_node
+				}
+				neighbor_node.f = neighbor_node.g + neighbor_node.h #Now calculate f
+				open_set.append(neighbor_node)
+
+		#Finally, add the node to the closed set
+		closed_set.append(next_node)
+
+	#end while - If this while broke, means we found target
+
+
+
+
+
+
+
+
 
 #33333 END ROGUE CIV FUNCTIONS
 ############################################################################
