@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Creature.tscn" type="PackedScene" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://Tiles/blank.png" type="Texture" id=6]
 [ext_resource path="res://InterfaceWindows/CreatureDisplay.tscn" type="PackedScene" id=7]
 [ext_resource path="res://InterfaceWindows/ItemDisplay.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/Pheasant.tscn" type="PackedScene" id=9]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
@@ -35,9 +34,3 @@ position = Vector2( 0, 480 )
 [node name="ItemDisplay" parent="." instance=ExtResource( 8 )]
 visible = false
 position = Vector2( 0, 480 )
-
-[node name="Item" parent="." instance=ExtResource( 3 )]
-position = Vector2( 230.667, 80 )
-
-[node name="Pheasant" parent="." instance=ExtResource( 9 )]
-position = Vector2( 108, 115.111 )

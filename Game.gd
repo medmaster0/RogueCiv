@@ -146,7 +146,7 @@ func _ready():
 	pass 
 	
 	#DEBUG, check the items
-	print( MedAlgo.is_tile_index_at(map_buildings,102,1,1,0) )
+	print( MedAlgo.are_tile_indices_at(map_buildings,[102,101],2,2,0) )
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.

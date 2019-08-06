@@ -302,6 +302,7 @@ func isVectorInSet(search_coords, search_set):
 	return(false)
 #END A STAR SEARCH AFFILIATED FUNCTIONS
 	
+#############################################################
 #### Here Be some RogueCiv Search functions
 #These functions can search through 3D lists -> item_array[x coord][y coord][z coord] = [list of items]
 
@@ -315,7 +316,17 @@ func is_tile_index_at(item_list, tile_index, xcoord, ycoord, zcoord):
 	#If made it to end, no match
 	return(false)
 
+#Utility Function that can check if multiple tile indices are at a coord
+# (The same as above but with a list of tile_indices
+func are_tile_indices_at(item_list, tile_indices, xcoord, ycoord, zcoord):
+	for tile_index in tile_indices:
+		if is_tile_index_at(item_list,tile_index,xcoord,ycoord,zcoord)==true:
+			return(true)
+	#If got to here, no match
+	return(false)
+
 #33333 END ROGUE CIV FUNCTIONS
+############################################################################
 
 #NEED TO MODIFY FOR ALCHEMY!!!!
 #POSSIBLY GENERAL USE??? LETS SEE ONCE IMPLEMENTED SINCE IM WRITING THIS BEFORE
