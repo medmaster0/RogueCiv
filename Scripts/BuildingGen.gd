@@ -32,7 +32,7 @@ extends Node
 #	5 - FLAG
 #	6 - DESK
 # 
-#Will return a 2D array with the following patter
+#Will return a 2D array with the following pattern
 # A 8 x 8 ARRAY
 func gen_building_plot_map():
 	
@@ -69,6 +69,7 @@ func gen_building_plot_map():
 	
 	return(building_map_plot)
 	
+#####MORE PLOT PATTERNS HERE
 	
 # UTILITY #######
 #
@@ -89,7 +90,7 @@ func place_rectangle_in_map(in_map, x_coord, y_coord, width, height, tile_index)
 	return(in_map)
 	
 	
-	
+#####MORE SHAPE FUNCTIONS HERE
 	
 ##Function that puts the building items in a Main Game Scene
 # The game_scene will put the items as children
@@ -231,3 +232,6 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 					temp_item.SetSecoColor(floorSeco)
 					temp_item.find_node("SelectButton").visible = false
 					temp_item.z_index = z_coord - 1
+					
+
+

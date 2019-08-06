@@ -144,6 +144,9 @@ func _ready():
 					var temp_y_coord = j * $TileMap.cell_size.y * tiles_per_plot
 					BuildingGen.put_items_building_plot(self, temp_x_coord, temp_y_coord, 0)
 	pass 
+	
+	#DEBUG, check the items
+	print( MedAlgo.is_tile_index_at(map_buildings,102,1,1,0) )
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
