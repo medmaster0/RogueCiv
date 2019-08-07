@@ -9,7 +9,8 @@ export (PackedScene) var Item;
 export (PackedScene) var CaveMap;
 
 var map_creatures = []; #list of all the creatures on map
-var num_creatures = 12; #number of all creatures on map..
+#var num_creatures = 12; #number of all creatures on map..
+var num_creatures = 12;
 
 #One ladder and flag correspond to each creature
 #var map_ladders = [] #list of all ladders on map (and has a flag next to it)
@@ -26,6 +27,7 @@ var map_items = [] #items that can be picked up...
 #var map_buildings_bot = [] #building items that should be built below everything
 var map_buildings = [] #building items (no diff between top and bottom) -> Always under creature
 var neighboorhood_layout #will hold the neighborhood layout data
+var wall_indices = [102] #tile indices that creatures can't walk through
 
 #STANDARD GAME SCENE GLOBALS
 var world_width #the size of the map (in pixels)
@@ -62,15 +64,6 @@ func _ready():
 	#back_col = MedAlgo.color_shift(back_col, -0.8)
 	$BackgroundSprite.modulate = back_col
 	$BackgroundSprite.scale = Vector2(map_width+1,map_height+1)
-	
-	#Make a bunch of rando creatures....
-	for i in range(num_creatures):
-		var temp_cre = Creature.instance()
-		var temp_map_position = Vector2( floor(rand_range(min_x_map,max_x_map)) ,  floor(rand_range(min_y_map,max_y_map))  )
-		var temp_world_position = $TileMap.map_to_world(temp_map_position); 
-		temp_cre.position = temp_world_position
-		add_child(temp_cre)
-		map_creatures.append(temp_cre)
 	
 	#Initialize Item Arrays
 	#MAP ITEMS
@@ -145,9 +138,23 @@ func _ready():
 					BuildingGen.put_items_building_plot(self, temp_x_coord, temp_y_coord, 0)
 	pass 
 	
-	#DEBUG, check the items
-	print( MedAlgo.are_tile_indices_at(map_buildings,[102,101],Vector3(2,2,0)) )
-	print( MedAlgo.find_path_items(Vector3(0,0,0), Vector3(2,2,0), map_buildings  )  )
+	#Make a bunch of rando creatures....
+	for i in range(num_creatures):
+		var temp_cre = Creature.instance()
+		var is_on_blocked_tile = true #Gotta make sure creature isn't blocked
+		while(is_on_blocked_tile == true):
+			var temp_map_position = Vector2( floor(rand_range(min_x_map,max_x_map)) ,  floor(rand_range(min_y_map,max_y_map))  )
+			var check_block_coord = Vector3(temp_map_position.x, temp_map_position.y, 0)
+			if MedAlgo.are_tile_indices_at(map_buildings, wall_indices, check_block_coord) == false:
+				var temp_world_position = $TileMap.map_to_world(temp_map_position); 
+				temp_cre.position = temp_world_position
+				add_child(temp_cre)
+				temp_cre.map_coords = Vector3(temp_map_position.x, temp_map_position.y, 0)
+				map_creatures.append(temp_cre)
+				is_on_blocked_tile = false
+	
+	#DEBUG
+	
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
@@ -156,12 +163,17 @@ func _process(delta):
 	#Task Scheduling....
 	for cre in map_creatures:
 		if(cre.path.size() == 0):
-			var temp_map_target = Vector2( floor(rand_range(min_x_map,max_x_map)) ,  floor(rand_range(min_y_map,max_y_map))  )
-			var temp_world_target = $TileMap.map_to_world(temp_map_target)
-			while(true):
-				cre.path = MedAlgo.find_path(cre.position, temp_world_target, $TileMap)
-				if(cre.path[0].x != 9999): #make sure it was successful...
-					break
+			var found_path = false
+			while(found_path == false): 
+				var temp_map_target = Vector2( floor(rand_range(min_x_map,max_x_map)) ,  floor(rand_range(min_y_map,max_y_map))  )
+				var temp_world_target = $TileMap.map_to_world(temp_map_target)
+				#Gotta make sure the target isn't in a wall....
+				var check_vector = Vector3(temp_map_target.x,temp_map_target.y,0)
+				if(MedAlgo.is_in_bounds(check_vector, map_buildings) == true):
+					if(MedAlgo.are_tile_indices_at(map_buildings, wall_indices, check_vector) == false):
+						cre.path = MedAlgo.find_path_items(cre.map_coords, check_vector, map_buildings)
+						if cre.path != [9999,9999]:#Make sure it returned good	
+							found_path = true
 	
 	
 	pass

@@ -8,6 +8,7 @@ var step_tick = 0.5 #time period for each step
 var step_timer = 0 #will help keep track of when we stepped
 var path = [] #A set of steps to follow in pathfinding (usually set outside)
 var last_position #a position vector, keeping track of what tile we came from (for positioning)
+var map_coords = Vector3(0,0,0) #the map coords of the creature....
 
 #ALCHEMY SPECIFIC STUFF  (kept for reference.....)
 #export (PackedScene) var MaterialSymbol #has to create it's own material for picking up
@@ -83,7 +84,10 @@ func path_step():
 	var next_coords = path.pop_front()
 	
 	#Move the Creature there (remember to convert to world coords from map)
-	position = map.map_to_world(next_coords)
+	position = map.map_to_world(Vector2(next_coords.x, next_coords.y))
+	
+	#Also adjust the total world map coords
+	map_coords = Vector3(next_coords.x, next_coords.y, map_coords.z)
 	
 	#Position the carried weapon if necessary
 	if position.y > last_position.y: #then walked down
