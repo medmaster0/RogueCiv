@@ -154,7 +154,12 @@ func _ready():
 				is_on_blocked_tile = false
 	
 	#DEBUG
-	
+	var flow_map = RogueGen.DetermineFlowMap(neighboorhood_layout)
+	for row in flow_map:
+		print(row)
+		
+	for row in neighboorhood_layout:
+		print(row)
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.

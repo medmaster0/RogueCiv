@@ -295,9 +295,6 @@ func GenerateBank(map_size):
 			for r in range(window_run):
 				if i+r < width: #make sure it doesn't extend bounds of width
 					map[x0+i+r][y0-2] = window_id
-
-	
-	
 	
 	return map
 	
@@ -383,8 +380,101 @@ func int_array_sort(a,b):
 	return a < b
 	
 	
+
+#Generate Flow Map
+#Reads in a maze array (2D, 0 for empty, 1 for blocked)
+#REturns an identically sized array
+#But each cell contains a value from 0 - 15
+#One of the possible combinations of
+# UP   DOWN   LEFT  RIGHT
+# 0 	0		0		0
+# 0		0		0		1
+# ......
+# 1		1		1		1
+func DetermineFlowMap(maze_map):
 	
+	print("")
 	
+	var flow_map = [] #the flow map we return
 	
-	
-	
+	#Copy the maze_map
+	var x_dim = maze_map.size()
+	var y_dim = maze_map[0].size()
+	for i in range(x_dim):
+		var row = []
+		for j in range(y_dim):
+			row.append(0)
+		flow_map.append(row)
+		
+	#Iterate through the flow map
+	var check_x #index to check maze_map
+	var check_y #index to check maze_map
+	var isBlock = false #flag used to check if the flow is blocked in that direction
+	for i in range(x_dim): #x dim
+		for j in range(y_dim): #y dim
+		
+			#Construct the string "0000" to "1111" bit-by-bit
+			var flow_code = ""
+			
+			#If the tile is blocked, then write 1111 to it
+			if maze_map[i][j] == 1:
+				flow_code = "XXXX"
+				flow_map[i][j] = flow_code
+				continue
+			
+			#UP
+			check_x = i
+			check_y = j - 1
+			#First bounds check
+			if check_y < 0:
+				flow_code = flow_code + "1"
+			else:
+				#Then Check if blocked
+				if maze_map[check_x][check_y] == 1:
+					flow_code = flow_code + "1"
+				else:
+					flow_code = flow_code + "0"
+				
+			#DOWN
+			check_x = i
+			check_y = j + 1
+			#First bounds check
+			if check_y >= y_dim:
+				flow_code = flow_code + "1"
+			else:
+				#Then Check if blocked
+				if maze_map[check_x][check_y] == 1:
+					flow_code = flow_code + "1"
+				else:
+					flow_code = flow_code + "0"
+			
+			#LEFT
+			check_x = i - 1
+			check_y = j
+			#First bounds check
+			if check_x < 0:
+				flow_code = flow_code + "1"
+			else:
+				#Then Check if blocked
+				if maze_map[check_x][check_y] == 1:
+					flow_code = flow_code + "1"
+				else:
+					flow_code = flow_code + "0"
+				
+			#RIGHT
+			check_x = i + 1
+			check_y = j
+			#First bounds check
+			if check_x >= x_dim:
+				flow_code = flow_code + "1"
+			else:
+				#Then Check if blocked
+				if maze_map[check_x][check_y] == 1:
+					flow_code = flow_code + "1"
+				else:
+					flow_code = flow_code + "0"
+
+			#Enter the flow code...
+			flow_map[i][j] = flow_code
+			
+	return(flow_map)
