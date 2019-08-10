@@ -26,7 +26,7 @@ func _ready():
 		var temp_item = Item.instance()
 		temp_item.position = Vector2(randi()%int(get_viewport().size.x), randi()%int(get_viewport().size.y))
 		add_child(temp_item)
-		temp_item.setTile(105)
+		temp_item.setTile(201 + randi()%15)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

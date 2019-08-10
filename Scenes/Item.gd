@@ -19,6 +19,23 @@ extends Node2D
 # 105 - FLAG
 # 106 - DESK
 
+########### STREET ITEMS
+# 201 - ROAD_CENTER_CORNER_INNER
+# 202 - ROAD_CENTER_CORNER_OUTER
+# 203 - ROAD_CENTER_MIDDLE
+# 204 - ROAD_CENTER_TEE
+# 205 - ROAD_CENTER_TURN
+# 206 - ROAD_STRAIGHT
+# 207 - ROAD_STRAIGHT_STOP_INNER
+# 208 - ROAD_STRAIGHT_STOP_OUTER
+# 209 - ROAD_TURN_INNER
+# 210 - ROAD_TURN_OUTER
+# 211 - SIDEWALK_BACK
+# 212 - SIDEWALK_CORNER_BACK
+# 213 - SIDEWALK_CORNER_INNER
+# 214 - SIDEWALK_CORNER_OUTER
+# 215 - SIDEWALK_FRONT
+
 #LOAD UP ALL THE SPRITES>>>>
 
 #Resources Load
@@ -44,7 +61,36 @@ var doorSeco = preload("res://Tiles//scenery//doorSeco.png")
 #var flagPrim
 #var flagSeco
 
-
+#Street Resources Load
+var roadCenterCornerInnerPrim = preload("res://Tiles//street//RoadCenterCornerInnerPrim.png")
+var roadCenterCornerInnerSeco = preload("res://Tiles//street//RoadCenterCornerInnerSeco.png")
+var roadCenterCornerOuterPrim = preload("res://Tiles//street//RoadCenterCornerOuterPrim.png")
+var roadCenterCornerOuterSeco = preload("res://Tiles//street//RoadCenterCornerOuterSeco.png")
+var roadCenterMiddlePrim = preload("res://Tiles//street//RoadCenterMiddlePrim.png")
+var roadCenterMiddleSeco = preload("res://Tiles//street//RoadCenterMiddleSeco.png")
+var roadCenterTeePrim = preload("res://Tiles//street//RoadCenterTeePrim.png")
+var roadCenterTeeSeco = preload("res://Tiles//street//RoadCenterTeeSeco.png")
+var roadCenterTurnPrim = preload("res://Tiles//street//RoadCenterTurnPrim.png")
+var roadCenterTurnSeco = preload("res://Tiles//street//RoadCenterTurnSeco.png")
+var roadStraightPrim = preload("res://Tiles//street//RoadStraightPrim.png")
+var roadStraightSeco = preload("res://Tiles//street//RoadStraightSeco.png")
+var roadStraightStopInnerPrim = preload("res://Tiles//street//RoadStraightStopInnerPrim.png")
+var roadStraightStopInnerSeco = preload("res://Tiles//street//RoadStraightStopInnerSeco.png")
+var roadStraightStopOuterPrim = preload("res://Tiles//street//RoadStraightStopOuterPrim.png")
+var roadStraightStopOuterSeco = preload("res://Tiles//street//RoadStraightStopOuterSeco.png")
+var roadTurnInnerPrim = preload("res://Tiles//street//RoadTurnInnerPrim.png")
+var roadTurnInnerSeco = preload("res://Tiles//street//RoadTurnInnerSeco.png")
+var roadTurnOuterPrim = preload("res://Tiles//street//RoadTurnOuterPrim.png")
+var roadTurnOuterSeco = preload("res://Tiles//street//RoadTurnOuterSeco.png")
+var sidewalkBackPrim = preload("res://Tiles//street//SidewalkBackPrim.png")
+var sidewalkBackSeco = preload("res://Tiles//street//SidewalkBackSeco.png")
+var sidewalkCornerBackPrim = preload("res://Tiles//street//SidewalkCornerBackPrim.png")
+var sidewalkCornerInnerPrim = preload("res://Tiles//street//SidewalkCornerInnerPrim.png")
+var sidewalkCornerInnerSeco = preload("res://Tiles//street//SidewalkCornerInnerSeco.png")
+var sidewalkCornerOuterPrim = preload("res://Tiles//street//SidewalkCornerOuterPrim.png")
+var sidewalkCornerOuterSeco = preload("res://Tiles//street//SidewalkCornerOuterSeco.png")
+var sidewalkFrontPrim = preload("res://Tiles//street//SidewalkFrontPrim.png")
+var sidewalkFrontSeco = preload("res://Tiles//street//SidewalkFrontSeco.png")
 
 #Class Variables
 var primColor
@@ -157,9 +203,97 @@ func setTile(in_tile_index):
 			$Prim.texture = flagPrim
 			$Seco.texture = flagSeco
 			$Tert.texture = null
-
-
-
+		######STREET SHIT
+		201:
+			#ROAD_CENTER_CORNER_INNER
+			item_name = "road"
+			$Prim.texture = roadCenterCornerInnerPrim
+			$Seco.texture = roadCenterCornerInnerSeco
+			$Tert.texture = null
+		202:
+			#ROAD_CENTER_CORNER_OUTER
+			item_name = "road"
+			$Prim.texture = roadCenterCornerOuterPrim
+			$Seco.texture = roadCenterCornerOuterSeco
+			$Tert.texture = null
+		203:
+			#ROAD_CENTER_MIDDLE
+			item_name = "road"
+			$Prim.texture = roadCenterMiddlePrim
+			$Seco.texture = roadCenterMiddleSeco
+			$Tert.texture = null
+		204:
+			#ROAD_CENTER_TEE
+			item_name = "road"
+			$Prim.texture = roadCenterTeePrim
+			$Seco.texture = roadCenterTeeSeco
+			$Tert.texture = null
+		205:
+			#ROAD_CENTER_TURN
+			item_name = "road"
+			$Prim.texture = roadCenterTurnPrim
+			$Seco.texture = roadCenterTurnSeco
+			$Tert.texture = null
+		206:
+			#ROAD_STRAIGHT
+			item_name = "road"
+			$Prim.texture = roadStraightPrim
+			$Seco.texture = roadStraightSeco
+			$Tert.texture = null
+		207:
+			#ROAD_STRAIGHT_STOP_INNER
+			item_name = "road"
+			$Prim.texture = roadStraightStopInnerPrim
+			$Seco.texture = roadStraightStopInnerSeco
+			$Tert.texture = null
+		208:
+			#ROAD_STRAIGHT_STOP_OUTER
+			item_name = "road"
+			$Prim.texture = roadStraightStopOuterPrim
+			$Seco.texture = roadStraightStopOuterSeco
+			$Tert.texture = null
+		209:
+			#ROAD_TURN_INNER
+			item_name = "road"
+			$Prim.texture = roadTurnInnerPrim
+			$Seco.texture = roadTurnInnerSeco
+			$Tert.texture = null
+		210:
+			#ROAD_TURN_OUTER
+			item_name = "road"
+			$Prim.texture = roadTurnOuterPrim
+			$Seco.texture = roadTurnOuterSeco
+			$Tert.texture = null
+		211:
+			#SIDEWALK_BACK
+			item_name = "sidewalk"
+			$Prim.texture = sidewalkBackPrim
+			$Seco.texture = sidewalkBackSeco
+			$Tert.texture = null
+		212:
+			#SIDEWALK_CORNER_BACK
+			item_name = "sidewalk"
+			$Prim.texture = sidewalkCornerBackPrim
+			$Seco.texture = null
+			$Tert.texture = null
+		213:
+			#SIDEWALK_CORNER_INNER
+			item_name = "sidewalk"
+			$Prim.texture = sidewalkCornerInnerPrim
+			$Seco.texture = sidewalkCornerInnerSeco
+			$Tert.texture = null
+		214:
+			#SIDEWALK_CORNER_OUTER
+			item_name = "sidewalk"
+			$Prim.texture = sidewalkCornerOuterPrim
+			$Seco.texture = sidewalkCornerOuterSeco
+			$Tert.texture = null
+		215:
+			#SIDEWALK_FRONT
+			item_name = "sidewalk"
+			$Prim.texture = sidewalkFrontPrim
+			$Seco.texture = sidewalkFrontSeco
+			$Tert.texture = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
