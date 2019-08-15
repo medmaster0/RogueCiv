@@ -32,7 +32,7 @@ func _ready():
 	temp_item.position = Vector2(16,16)
 	add_child(temp_item)
 	temp_item.setTile(202)
-	temp_item.rotateSprites(5)
+	temp_item.rotateSprites(6)
 	
 	temp_item = Item.instance()
 	temp_item.position = Vector2(0,0)
