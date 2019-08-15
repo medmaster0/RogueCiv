@@ -138,47 +138,37 @@ func _ready():
 			var block_type = neighboorhood_flow_map[i][j]
 			match(block_type):
 				'0000':
-					print("hit")
+					print("quade here")
 				'0001':
-					print("hit")
+					BuildingGen.put_items_street_tri(self, temp_x_coord, temp_y_coord, 0)
 				'0010':
-					print("hit")
+					BuildingGen.put_items_street_tri(self, temp_x_coord, temp_y_coord, 0)
 				'0011':
-					print("hit")
 					BuildingGen.put_items_street_straight(self, temp_x_coord, temp_y_coord, 0)
 				'0100':
-					print("hit")
+					BuildingGen.put_items_street_tri(self, temp_x_coord, temp_y_coord, 0)
 				'0101':
-					print("hit")
 					BuildingGen.put_items_street_elbow(self, temp_x_coord, temp_y_coord, 0)
 				'0110':
-					print("hit")
 					BuildingGen.put_items_street_elbow(self, temp_x_coord, temp_y_coord, 0)
 				'0111':
-					print("end")
 					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
 				'1000':
-					print("hit")
+					BuildingGen.put_items_street_tri(self, temp_x_coord, temp_y_coord, 0)
 				'1001':
-					print("hit")
 					BuildingGen.put_items_street_elbow(self, temp_x_coord, temp_y_coord, 0)
 				'1010':
-					print("hit")
 					BuildingGen.put_items_street_elbow(self, temp_x_coord, temp_y_coord, 0)
 				'1011':
-					print("end")
 					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
 				'1100':
-					print("hit")
 					BuildingGen.put_items_street_straight(self, temp_x_coord, temp_y_coord, 0)
 				'1101':
-					print("end")
 					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
 				'1110':
-					print("end")
 					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
 				'1111':
-					print("hit")
+					print("nothing")
 
 
 
