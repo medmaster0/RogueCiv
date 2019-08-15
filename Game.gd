@@ -145,12 +145,15 @@ func _ready():
 					print("hit")
 				'0011':
 					print("hit")
+					BuildingGen.put_items_street_straight(self, temp_x_coord, temp_y_coord, 0)
 				'0100':
 					print("hit")
 				'0101':
 					print("hit")
+					BuildingGen.put_items_street_elbow(self, temp_x_coord, temp_y_coord, 0)
 				'0110':
 					print("hit")
+					BuildingGen.put_items_street_elbow(self, temp_x_coord, temp_y_coord, 0)
 				'0111':
 					print("end")
 					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
@@ -158,13 +161,16 @@ func _ready():
 					print("hit")
 				'1001':
 					print("hit")
+					BuildingGen.put_items_street_elbow(self, temp_x_coord, temp_y_coord, 0)
 				'1010':
 					print("hit")
+					BuildingGen.put_items_street_elbow(self, temp_x_coord, temp_y_coord, 0)
 				'1011':
 					print("end")
 					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
 				'1100':
 					print("hit")
+					BuildingGen.put_items_street_straight(self, temp_x_coord, temp_y_coord, 0)
 				'1101':
 					print("end")
 					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)

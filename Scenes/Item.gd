@@ -35,6 +35,7 @@ extends Node2D
 # 213 - SIDEWALK_CORNER_INNER
 # 214 - SIDEWALK_CORNER_OUTER
 # 215 - SIDEWALK_FRONT
+# 216 - SIDEWALK_INSIDE_CORNER_BACK
 
 #LOAD UP ALL THE SPRITES>>>>
 
@@ -91,6 +92,8 @@ var sidewalkCornerOuterPrim = preload("res://Tiles//street//SidewalkCornerOuterP
 var sidewalkCornerOuterSeco = preload("res://Tiles//street//SidewalkCornerOuterSeco.png")
 var sidewalkFrontPrim = preload("res://Tiles//street//SidewalkFrontPrim.png")
 var sidewalkFrontSeco = preload("res://Tiles//street//SidewalkFrontSeco.png")
+var sidewalkInsideCornerBackPrim = preload("res://Tiles//street//SidewalkInsideCornerBackPrim.png")
+var sidewalkInsideCornerBackSeco = preload("res://Tiles//street//SidewalkInsideCornerBackSeco.png")
 
 #Class Variables
 var primColor
@@ -293,6 +296,12 @@ func setTile(in_tile_index):
 			item_name = "sidewalk"
 			$Prim.texture = sidewalkFrontPrim
 			$Seco.texture = sidewalkFrontSeco
+			$Tert.texture = null
+		216:
+			#SIDEWALK_INSIDE_CORNER_BACK
+			item_name = "sidewalk"
+			$Prim.texture = sidewalkInsideCornerBackPrim
+			$Seco.texture = sidewalkInsideCornerBackSeco
 			$Tert.texture = null
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

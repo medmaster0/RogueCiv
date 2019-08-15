@@ -265,6 +265,59 @@ var streetEnd_orientation = [
 
 ]
 
+var streetStraight_tiles = [
+
+[11,15,06,06,06,06,15,11],
+[11,15,06,06,06,06,15,11],
+[11,15,06,06,06,06,15,11],
+[11,15,06,06,06,06,15,11],
+[11,15,06,06,06,06,15,11],
+[11,15,06,06,06,06,15,11],
+[11,15,06,06,06,06,15,11],
+[11,15,06,06,06,06,15,11]
+
+]
+
+#These correspond to the rotation code for Item.rotate function
+var streetStraight_orientation = [
+
+[0,0,0,2,0,2,4,0],
+[2,5,0,2,0,2,2,2],
+[0,0,0,2,0,2,4,0],
+[2,5,0,2,0,2,2,2],
+[0,0,0,2,0,2,4,0],
+[2,5,0,2,0,2,2,2],
+[0,0,0,2,0,2,4,0],
+[2,5,0,2,0,2,2,2]
+
+]
+
+var streetElbow_tiles = [
+
+[11,11,11,11,11,11,11,12],
+[15,15,15,15,15,15,14,11],
+[06,06,06,06,06,10,15,11],
+[06,06,06,06,09,06,15,11],
+[06,06,06,10,06,06,15,11],
+[06,06,09,06,06,06,15,11],
+[15,13,06,06,06,06,15,11],
+[16,15,06,06,06,06,15,11]
+
+]
+
+#These correspond to the rotation code for Item.rotate function
+var streetElbow_orientation = [
+
+[3,1,3,1,3,1,3,0],
+[6,1,6,1,6,1,0,2],
+[1,1,1,1,1,0,4,0],
+[3,3,3,3,0,2,2,2],
+[1,1,1,0,0,2,4,0],
+[3,3,0,2,0,2,2,2],
+[3,0,0,2,0,2,4,0],
+[0,5,0,2,0,2,2,2]
+
+]
 
 ##Function that puts the building items in a Main Game Scene
 # The game_scene will put the items as children
@@ -301,6 +354,99 @@ func put_items_street_end(game_scene, x_coord_global, y_coord_global, z_coord):
 			#Basically, we add 200 to it. 
 			var tile_type = streetEnd_tiles[i][j]
 			var orientation_type = streetEnd_orientation[i][j]
+			#Create Item
+			temp_item = Item.instance()
+			temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+			game_scene.add_child(temp_item)
+			temp_item.setTile(int(tile_type) + 200)
+			temp_item.rotateSprites(orientation_type)
+			game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+			#200-210 are roads, 
+			if int(tile_type) + 200 <= 210:
+				temp_item.SetPrimColor(roadPrim)
+				temp_item.SetSecoColor(roadSeco)
+			else:
+				temp_item.SetPrimColor(sidewalkPrim)
+				temp_item.SetSecoColor(sidewalkSeco)
+			temp_item.find_node("SelectButton").visible = false
+			temp_item.z_index = z_coord - 1
+			
+
+func put_items_street_straight(game_scene, x_coord_global, y_coord_global, z_coord):
+	var Item = load("res://Scenes//Item.tscn") #Used as a template for making items
+	
+	var temp_item #the temp item used to create the items
+	var temp_x_coord_global #the global position of created item
+	var temp_y_coord_global #the global position of created item
+	var temp_x_coord_map #the map position of created item
+	var temp_y_coord_map #the map position of created item
+	var tile_size = 16 #How many global pixels wide/high a tile is....
+
+	#COLORS>..... SHOULD handle this better
+	var roadPrim = Color(randf(), randf(), randf())
+	var roadSeco = Color(randf(), randf(), randf())
+	var sidewalkPrim = Color(randf(), randf(), randf())
+	var sidewalkSeco = Color(randf(), randf(), randf())
+
+	#Read through the map - NOTE THE ORDER OF ROWS/COLS!!!
+	for i in range(streetStraight_tiles.size()): #rows, y-dim
+		for j in range(streetStraight_tiles[i].size()): #cols, x-dim
+			#Figure out coords
+			temp_x_coord_map = j + (x_coord_global/tile_size)
+			temp_y_coord_map = i + (y_coord_global/tile_size)
+			temp_x_coord_global = tile_size * temp_x_coord_map
+			temp_y_coord_global = tile_size * temp_y_coord_map
+			
+			#Choose Item type and Building Array 
+			#Basically, we add 200 to it. 
+			var tile_type = streetStraight_tiles[i][j]
+			var orientation_type = streetStraight_orientation[i][j]
+			#Create Item
+			temp_item = Item.instance()
+			temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+			game_scene.add_child(temp_item)
+			temp_item.setTile(int(tile_type) + 200)
+			temp_item.rotateSprites(orientation_type)
+			game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+			#200-210 are roads, 
+			if int(tile_type) + 200 <= 210:
+				temp_item.SetPrimColor(roadPrim)
+				temp_item.SetSecoColor(roadSeco)
+			else:
+				temp_item.SetPrimColor(sidewalkPrim)
+				temp_item.SetSecoColor(sidewalkSeco)
+			temp_item.find_node("SelectButton").visible = false
+			temp_item.z_index = z_coord - 1
+			
+func put_items_street_elbow(game_scene, x_coord_global, y_coord_global, z_coord):
+	var Item = load("res://Scenes//Item.tscn") #Used as a template for making items
+	
+	var temp_item #the temp item used to create the items
+	var temp_x_coord_global #the global position of created item
+	var temp_y_coord_global #the global position of created item
+	var temp_x_coord_map #the map position of created item
+	var temp_y_coord_map #the map position of created item
+	var tile_size = 16 #How many global pixels wide/high a tile is....
+
+	#COLORS>..... SHOULD handle this better
+	var roadPrim = Color(randf(), randf(), randf())
+	var roadSeco = Color(randf(), randf(), randf())
+	var sidewalkPrim = Color(randf(), randf(), randf())
+	var sidewalkSeco = Color(randf(), randf(), randf())
+
+	#Read through the map - NOTE THE ORDER OF ROWS/COLS!!!
+	for i in range(streetElbow_tiles.size()): #rows, y-dim
+		for j in range(streetElbow_tiles[i].size()): #cols, x-dim
+			#Figure out coords
+			temp_x_coord_map = j + (x_coord_global/tile_size)
+			temp_y_coord_map = i + (y_coord_global/tile_size)
+			temp_x_coord_global = tile_size * temp_x_coord_map
+			temp_y_coord_global = tile_size * temp_y_coord_map
+			
+			#Choose Item type and Building Array 
+			#Basically, we add 200 to it. 
+			var tile_type = streetElbow_tiles[i][j]
+			var orientation_type = streetElbow_orientation[i][j]
 			#Create Item
 			temp_item = Item.instance()
 			temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
