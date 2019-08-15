@@ -327,6 +327,7 @@ func disableSelect():
 # 4 - Flip H <>
 # 5 - Flip V ^ v
 # 6 - Flip Origin
+# 7 - Flip Reverse Origin
 func rotateSprites(rotation_code):
 	
 	match(rotation_code):
@@ -387,4 +388,14 @@ func rotateSprites(rotation_code):
 			$Tert.flip_v = !$Tert.flip_v
 			$Tert.rotation_degrees = 90
 			$Tert.offset = Vector2(0,-16)
-			
+		7:
+			#First flip, then rotate -90
+			$Prim.flip_v = !$Prim.flip_v
+			$Prim.rotation_degrees = -90
+			$Prim.offset = Vector2(-16,0)
+			$Seco.flip_v = !$Seco.flip_v
+			$Seco.rotation_degrees = -90
+			$Seco.offset = Vector2(-16,0)
+			$Tert.flip_v = !$Tert.flip_v
+			$Tert.rotation_degrees = -90
+			$Tert.offset = Vector2(-16,0)
