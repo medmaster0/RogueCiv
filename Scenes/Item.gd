@@ -307,3 +307,62 @@ func _on_SelectButton_pressed():
 #This function will disable the select button
 func disableSelect():
 	find_node("SelectButton").visible = false #need to disable button
+
+#Function to rotate the items...
+#Will preserve the position, but will change the sprite offsets
+#Code:
+# 0 - 0 degrees
+# 1 - 90
+# 2 - 180
+# 3 - -90
+# 4 - Flip H <>
+# 5 - Flip V ^ v
+func rotateSprites(rotation_code):
+	
+	match(rotation_code):
+		0:
+			#Adjust the rotation
+			$Prim.rotation_degrees = 0
+			$Seco.rotation_degrees = 0
+			$Tert.rotation_degrees = 0
+			#Adjust the offset 
+			$Prim.offset = Vector2(0,0)
+			$Seco.offset = $Prim.offset
+			$Tert.offset = $Prim.offset
+		1:
+			#Adjust the rotation
+			$Prim.rotation_degrees = 90
+			$Seco.rotation_degrees = 90
+			$Tert.rotation_degrees = 90
+			#Adjust the offset 
+			$Prim.offset = Vector2(0,-16)
+			$Seco.offset = $Prim.offset
+			$Tert.offset = $Prim.offset
+		2:
+			#Adjust the rotation
+			$Prim.rotation_degrees = 180
+			$Seco.rotation_degrees = 180
+			$Tert.rotation_degrees = 180
+			#Adjust the offset 
+			$Prim.offset = Vector2(-16,-16)
+			$Seco.offset = $Prim.offset
+			$Tert.offset = $Prim.offset
+		3:
+			#Adjust the rotation
+			$Prim.rotation_degrees = -90
+			$Seco.rotation_degrees = -90
+			$Tert.rotation_degrees = -90
+			#Adjust the offset 
+			$Prim.offset = Vector2(-16,0)
+			$Seco.offset = $Prim.offset
+			$Tert.offset = $Prim.offset
+		4:
+			#Flip Horizontal < >
+			$Prim.flip_h = !$Prim.flip_h
+			$Seco.flip_h = !$Seco.flip_h
+			$Tert.flip_h = !$Tert.flip_h
+		5:
+			#Flip Vert ^ v
+			$Prim.flip_v = !$Prim.flip_v
+			$Seco.flip_v = !$Seco.flip_v
+			$Tert.flip_v = !$Tert.flip_v

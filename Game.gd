@@ -27,6 +27,7 @@ var map_items = [] #items that can be picked up...
 #var map_buildings_bot = [] #building items that should be built below everything
 var map_buildings = [] #building items (no diff between top and bottom) -> Always under creature
 var neighboorhood_layout #will hold the neighborhood layout data
+var neighboorhood_flow_map #Will hold the layout flow data
 var wall_indices = [102] #tile indices that creatures can't walk through
 
 #STANDARD GAME SCENE GLOBALS
@@ -108,22 +109,13 @@ func _ready():
 		map_buildings.append(x_list)
 		
 
-				
-#	#Make a bunch of rando items
-#	for i in range(10):
-#		var temp_item = Item.instance()
-#		var temp_map_position = Vector2( floor(rand_range(min_x_map,max_x_map)) ,  floor(rand_range(min_y_map,max_y_map))  )
-#		var temp_world_position = $TileMap.map_to_world(temp_map_position);
-#		temp_item.position = temp_world_position
-#		add_child(temp_item)
-#		map_items.append(temp_item)
-		
 	
 	#DEBUG -> inject random creature into caveMap
 	#$CaveMap.enterMainCreature(map_creatures[randi()%map_creatures.size()])
 	
 	#Generate Neighborhood Layout
 	neighboorhood_layout = RogueGen.GenerateCorridorMaze(8,5,1)
+	neighboorhood_flow_map = RogueGen.DetermineFlowMap(neighboorhood_layout)
 	
 	#Construct the neighboorhood
 	var tiles_per_plot = 8 #how many tiles are on each building plot
@@ -138,6 +130,57 @@ func _ready():
 					BuildingGen.put_items_building_plot(self, temp_x_coord, temp_y_coord, 0)
 	pass 
 	
+	#Construct the roads (based on flow)
+	for i in neighboorhood_flow_map.size(): #the x dim
+		for j in neighboorhood_flow_map[i].size(): #the y dim
+			var temp_x_coord = i * $TileMap.cell_size.x * tiles_per_plot
+			var temp_y_coord = j * $TileMap.cell_size.y * tiles_per_plot
+			var block_type = neighboorhood_flow_map[i][j]
+			match(block_type):
+				'0000':
+					print("hit")
+				'0001':
+					print("hit")
+				'0010':
+					print("hit")
+				'0011':
+					print("hit")
+				'0100':
+					print("hit")
+				'0101':
+					print("hit")
+				'0110':
+					print("hit")
+				'0111':
+					print("end")
+					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
+				'1000':
+					print("hit")
+				'1001':
+					print("hit")
+				'1010':
+					print("hit")
+				'1011':
+					print("end")
+					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
+				'1100':
+					print("hit")
+				'1101':
+					print("end")
+					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
+				'1110':
+					print("end")
+					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
+				'1111':
+					print("hit")
+
+
+
+
+
+
+
+
 	#Make a bunch of rando creatures....
 	for i in range(num_creatures):
 		var temp_cre = Creature.instance()
@@ -155,7 +198,7 @@ func _ready():
 	
 	#DEBUG
 #	var test_map = RogueGen.GenerateVault_v1(Vector2(16,16))
-#	var flow_map = RogueGen.DetermineFlowMap(test_map.map)
+#	var flow_map = RogueGen.DetermineFlowMap(neighboorhood_layout)
 #	for row in flow_map:
 #		print(row)
 #
