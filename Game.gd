@@ -23,12 +23,11 @@ var num_creatures = 12;
 #######
 ### Access: map_items[x_coord][y_coord][z-_coord] = {list of Item scenes}
 var map_items = [] #items that can be picked up...
-#var map_buildings_top = [] #building items that should be built above everything
-#var map_buildings_bot = [] #building items that should be built below everything
 var map_buildings = [] #building items (no diff between top and bottom) -> Always under creature
 var neighboorhood_layout #will hold the neighborhood layout data
 var neighboorhood_flow_map #Will hold the layout flow data
 var wall_indices = [102] #tile indices that creatures can't walk through
+var street_blocks = [] #will hold the street block objects
 
 #STANDARD GAME SCENE GLOBALS
 var world_width #the size of the map (in pixels)
@@ -46,6 +45,10 @@ var min_z_map = 0 #The lowest level
 
 #More Globals
 var back_col #will be constantly changing (in increments though since it's expensive)
+var street_prim_col
+var street_seco_col
+var street_tert_col
+var street_quad_col
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -66,6 +69,12 @@ func _ready():
 	$BackgroundSprite.modulate = back_col
 	$BackgroundSprite.scale = Vector2(map_width+1,map_height+1)
 	
+	#Random street colors
+	street_prim_col = Color(randf(), randf(), randf())
+	street_seco_col = Color(randf(), randf(), randf())
+	street_tert_col = Color(randf(), randf(), randf())
+	street_quad_col = Color(randf(), randf(), randf())
+	
 	#Initialize Item Arrays
 	#MAP ITEMS
 	for i in range(max_x_map+16):
@@ -77,26 +86,6 @@ func _ready():
 				y_list.append(z_list)
 			x_list.append(y_list)
 		map_items.append(x_list)
-#	#BUILDINGS BOTTOM
-#	for i in range(max_x_map):
-#		var x_list = []
-#		for j in range(max_y_map):
-#			var y_list = []
-#			for z in range(max_z_map):
-#				var z_list = []
-#				y_list.append(z_list)
-#			x_list.append(y_list)
-#		map_buildings_bot.append(x_list)
-#	#BUILDINGS TOP
-#	for i in range(max_x_map):
-#		var x_list = []
-#		for j in range(max_y_map):
-#			var y_list = []
-#			for z in range(max_z_map):
-#				var z_list = []
-#				y_list.append(z_list)
-#			x_list.append(y_list)
-#		map_buildings_top.append(x_list)
 	#BUILDINGS
 	for i in range(max_x_map+16):
 		var x_list = []
@@ -135,44 +124,42 @@ func _ready():
 		for j in neighboorhood_flow_map[i].size(): #the y dim
 			var temp_x_coord = i * $TileMap.cell_size.x * tiles_per_plot
 			var temp_y_coord = j * $TileMap.cell_size.y * tiles_per_plot
+			var temp_z_coord = 0
 			var block_type = neighboorhood_flow_map[i][j]
 			match(block_type):
 				'0000':
 					print("quad")
-					BuildingGen.put_items_street_quad(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 4, 0)
 				'0001':
-					BuildingGen.put_items_street_tri(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 3, 0)
 				'0010':
-					BuildingGen.put_items_street_tri(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 3, 2)
 				'0011':
-					BuildingGen.put_items_street_straight(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 1, 0)
 				'0100':
-					BuildingGen.put_items_street_tri(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 3, 1)
 				'0101':
-					BuildingGen.put_items_street_elbow(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 2, 1)
 				'0110':
-					BuildingGen.put_items_street_elbow(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 2, 2)
 				'0111':
-					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 0, 2)
 				'1000':
-					BuildingGen.put_items_street_tri(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 3, 3)
 				'1001':
-					BuildingGen.put_items_street_elbow(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 2, 0)
 				'1010':
-					BuildingGen.put_items_street_elbow(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 2, 3)
 				'1011':
-					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 0, 0)
 				'1100':
-					BuildingGen.put_items_street_straight(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 1, 1)
 				'1101':
-					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 0, 1)
 				'1110':
-					BuildingGen.put_items_street_end(self, temp_x_coord, temp_y_coord, 0)
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 0, 3)
 				'1111':
 					print("nothing")
-
-
-
 
 
 
@@ -192,15 +179,9 @@ func _ready():
 				temp_cre.map_coords = Vector3(temp_map_position.x, temp_map_position.y, 0)
 				map_creatures.append(temp_cre)
 				is_on_blocked_tile = false
-	
-	#DEBUG
-#	var test_map = RogueGen.GenerateVault_v1(Vector2(16,16))
-#	var flow_map = RogueGen.DetermineFlowMap(neighboorhood_layout)
-#	for row in flow_map:
-#		print(row)
-#
-#	for row in test_map.map:
-#		print(row)
+
+
+	#DEBUG CODE DOWN HERE
 
 func _process(delta):
 	# Called every frame. Delta is time since last frame.
