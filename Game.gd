@@ -128,7 +128,6 @@ func _ready():
 			var block_type = neighboorhood_flow_map[i][j]
 			match(block_type):
 				'0000':
-					print("quad")
 					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 4, 0)
 				'0001':
 					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 3, 0)
@@ -160,6 +159,8 @@ func _ready():
 					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 0, 3)
 				'1111':
 					print("nothing")
+				'XXXX':
+					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 5, 0)
 
 
 

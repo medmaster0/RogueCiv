@@ -26,6 +26,9 @@ var fourwaySeco = preload("res://Tiles//street//fullBlock//FourwaySeco.png")
 var fourwayTert = preload("res://Tiles//street//fullBlock//FourwayTert.png")
 var fourwayQuad = preload("res://Tiles//street//fullBlock//FourwayQuad.png")
 
+var surroundTert = preload("res://Tiles//street//fullBlock//SurroundTert.png")
+var surroundQuad = preload("res://Tiles//street//fullBlock//SurroundQuad.png")
+
 #Class Variables
 var tile_index
 var primCol
@@ -39,6 +42,7 @@ var quadCol
 # 2 - ELBOW
 # 3 - TRI
 # 4 - FOURWAY
+# 5 - SURROUND
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -107,6 +111,12 @@ func SetTile(in_tile_index):
 			$Seco.texture = fourwaySeco
 			$Tert.texture = fourwayTert
 			$Quad.texture = fourwayQuad
+		5:
+			#Surround
+			$Prim.texture = null
+			$Seco.texture = null
+			$Tert.texture = surroundTert
+			$Quad.texture = surroundQuad
 
 
 #Function to rotate the items...
