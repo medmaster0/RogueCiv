@@ -11,6 +11,7 @@ export (PackedScene) var CaveMap;
 var map_creatures = []; #list of all the creatures on map
 #var num_creatures = 12; #number of all creatures on map..
 var num_creatures = 12;
+var selected_creature; 
 
 #One ladder and flag correspond to each creature
 #var map_ladders = [] #list of all ladders on map (and has a flag next to it)
@@ -63,11 +64,11 @@ func _ready():
 	map_height = int($TileMap.world_to_map(Vector2(0,world_height)).y)
 	
 	#random background color
-	back_col = Color(randf(), randf(), randf())
-	#back_col = MedAlgo.generate_pastel()
-	#back_col = MedAlgo.color_shift(back_col, -0.8)
+	#back_col = Color(randf(), randf(), randf())
+	back_col = MedAlgo.generate_pastel()
+	#back_col = MedAlgo.color_shift(back_col, -0.8) #This will be the color of wet
 	$BackgroundSprite.modulate = back_col
-	$BackgroundSprite.scale = Vector2(map_width+1,map_height+1)
+	$BackgroundSprite.scale = Vector2(3*map_width+1,3*map_height+1)
 	
 	#Random street colors
 	street_prim_col = Color(randf(), randf(), randf())
@@ -162,10 +163,6 @@ func _ready():
 				'XXXX':
 					BuildingGen.put_street_block(self, temp_x_coord, temp_y_coord, temp_z_coord, 5, 0)
 
-
-
-
-
 	#Make a bunch of rando creatures....
 	for i in range(num_creatures):
 		var temp_cre = Creature.instance()
@@ -180,7 +177,7 @@ func _ready():
 				temp_cre.map_coords = Vector3(temp_map_position.x, temp_map_position.y, 0)
 				map_creatures.append(temp_cre)
 				is_on_blocked_tile = false
-
+	selected_creature = map_creatures[0] #Default, select first
 
 	#DEBUG CODE DOWN HERE
 
@@ -203,6 +200,8 @@ func _process(delta):
 						if cre.path != [9999,9999]:#Make sure it returned good	
 							found_path = true
 	
+	#LOCK THE CAMERA DOWN...?? Is this good?
+	$MainCamera.position = selected_creature.position
 	
 	pass
 
@@ -211,23 +210,26 @@ func _process(delta):
 #Also handles the closing/deselecting? of other windows...
 func DisplayCreature(cre):
 	#Turn on window
-	$CreatureDisplay.visible = true
+	$HUDLayer/CreatureDisplay.visible = true
 	
 	#Turn off other windows
-	$ItemDisplay.visible = false
+	$HUDLayer/ItemDisplay.visible = false
 	
 	#Populate the Window with passed creature data
-	$CreatureDisplay.setDisplayInfo(cre)
+	$HUDLayer/CreatureDisplay.setDisplayInfo(cre)
+	
+	#Update selected creature...
+	selected_creature = cre
 
 #Function that displays and populate the Item Display Window
 #Called by individual item scenes when they are pressed
 #also handles the closing/deselecting of other windows
 func DisplayItem(item):
 	#Turn on window
-	$ItemDisplay.visible = true
+	$HUDLayer/ItemDisplay.visible = true
 	
 	#Turn off other windows
-	$CreatureDisplay.visible = false
+	$HUDLayer/CreatureDisplay.visible = false
 	
 	#Populate the window with the passed item data
-	$ItemDisplay.setDisplayInfo(item)
+	$HUDLayer/ItemDisplay.setDisplayInfo(item)
