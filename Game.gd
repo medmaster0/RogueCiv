@@ -37,8 +37,10 @@ var map_width #the size of the map (in cells/tiles) SCREEN DIMS!!
 var map_height #the size of the map (in cells/tiles) SCREEN DIMS!!
 var cell_size #the amount of pixels in a cell/tile
 #BROADER WORLD VARS
-var max_x_map = 64
-var max_y_map = 29 #How far down the map goes before hitting interface windows
+var max_x_block = 14
+var max_y_block = 14
+var max_x_map = 8 * max_x_block #How big the generated map is... (8 tiles per block)
+var max_y_map = 8 * max_y_block
 var min_x_map = 0
 var min_y_map = 0
 var max_z_map = 20 #How high the map goes
@@ -68,7 +70,7 @@ func _ready():
 	back_col = MedAlgo.generate_pastel()
 	#back_col = MedAlgo.color_shift(back_col, -0.8) #This will be the color of wet
 	$BackgroundSprite.modulate = back_col
-	$BackgroundSprite.scale = Vector2(3*map_width+1,3*map_height+1)
+	$BackgroundSprite.scale = Vector2(3*max_x_map,3*max_y_map)
 	
 	#Random street colors
 	street_prim_col = Color(randf(), randf(), randf())
@@ -104,7 +106,7 @@ func _ready():
 	#$CaveMap.enterMainCreature(map_creatures[randi()%map_creatures.size()])
 	
 	#Generate Neighborhood Layout
-	neighboorhood_layout = RogueGen.GenerateCorridorMaze(8,5,1)
+	neighboorhood_layout = RogueGen.GenerateCorridorMaze(max_x_block,max_y_block,1)
 	neighboorhood_flow_map = RogueGen.DetermineFlowMap(neighboorhood_layout)
 	
 	#Construct the neighboorhood
