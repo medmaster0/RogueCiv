@@ -28,5 +28,6 @@ margin_bottom = 22.0
 flat = true
 
 [node name="Hat" parent="." instance=ExtResource( 5 )]
+visible = false
 position = Vector2( 0, -8 )
 [connection signal="pressed" from="SelectButton" to="." method="_on_SelectButton_pressed"]

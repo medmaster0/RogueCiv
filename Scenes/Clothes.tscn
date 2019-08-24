@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Tiles/clothes/angel_wings.png" type="Texture" id=1]
+[ext_resource path="res://Tiles/clothes/bandanaPrim.png" type="Texture" id=2]
+[ext_resource path="res://Tiles/clothes/bandanaSeco.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Creature.tscn" type="PackedScene" id=4]
+
+[node name="Clothes" type="Node2D"]
+
+[node name="Angel" type="Node2D" parent="."]
+editor/display_folded = true
+visible = false
+
+[node name="Prim" type="Sprite" parent="Angel"]
+z_index = 1
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -1, -19 )
+
+[node name="Bandana" type="Node2D" parent="."]
+
+[node name="Prim" type="Sprite" parent="Bandana"]
+z_index = 1
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( 0, -8 )
+
+[node name="Seco" type="Sprite" parent="Bandana"]
+z_index = 1
+texture = ExtResource( 3 )
+centered = false
+offset = Vector2( 0, -8 )
+
+[node name="BigBow" type="Node2D" parent="."]
+
+[node name="Cap" type="Node2D" parent="."]
+
+[node name="Crown" type="Node2D" parent="."]
+
+[node name="Demon" type="Node2D" parent="."]
+
+[node name="Doc" type="Node2D" parent="."]
+
+[node name="FeatherHat" type="Node2D" parent="."]
+
+[node name="Hood" type="Node2D" parent="."]
+
+[node name="Jester" type="Node2D" parent="."]
+
+[node name="LilBow" type="Node2D" parent="."]
+
+[node name="Masq" type="Node2D" parent="."]
+
+[node name="Mohawk" type="Node2D" parent="."]
+
+[node name="Nurse" type="Node2D" parent="."]
+
+[node name="ParasolHat" type="Node2D" parent="."]
+
+[node name="Tie" type="Node2D" parent="."]
+
+[node name="TopHat" type="Node2D" parent="."]
+
+[node name="VeilDancer" type="Node2D" parent="."]
+
+[node name="Witch" type="Node2D" parent="."]
+
+[node name="WitchDoctor" type="Node2D" parent="."]
+
+[node name="Creature" parent="." instance=ExtResource( 4 )]
