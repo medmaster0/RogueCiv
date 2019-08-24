@@ -17,8 +17,8 @@ var quadColor
 func _ready():
 	randomize()
 	
-	#tile_index = randi()%20
-	tile_index = 19
+	tile_index = randi()%20
+	#tile_index = 19
 	set_tile_index(tile_index)
 	
 	pass # Replace with function body.
