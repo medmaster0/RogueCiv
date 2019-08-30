@@ -38,3 +38,5 @@ position = Vector2( 0, 480 )
 
 [node name="MainCamera" type="Camera2D" parent="."]
 current = true
+drag_margin_h_enabled = false
+drag_margin_v_enabled = false
