@@ -23,7 +23,7 @@ func setDisplayInfo(creature):
 	$Creature.SetPrimColor(creature.primColor)
 	SetZodiacLabel(creature.zodiac_sign)
 	$ZodiacTile.change_symbol(creature.zodiac_sign)
-	$Creature/Hat.copy_hat(creature.find_node("Hat")) #also copy hat
+	$Creature/Clothes.copy_clothes(creature.find_node("Clothes")) #also copy hat
 	$Creature/MajorArcWeapon.copy_weapon(creature.find_node("MajorArcWeapon")) #also copy weapon
 	$Creature/MajorArcWeapon.position.x = 16 #position it to the right
 	$WeaponLabel.text = "Equipped Item: " + $Creature/MajorArcWeapon.item_name

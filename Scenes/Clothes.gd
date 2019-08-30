@@ -173,3 +173,30 @@ func set_tile_index(index):
 		19:
 			#Witch Doc... No need to set colors
 			get_child(index).visible = true
+			
+			
+
+
+#Function that will copy all the parameters of a given nput clothes
+func copy_clothes(in_clothes):
+	
+	#Turn off current child...
+	get_child(tile_index).visible = false
+	
+	#Turn on the correct one
+	self.tile_index = in_clothes.tile_index
+	get_child(tile_index).visible = true
+
+	#Copy all the colors... if applicable...
+	if in_clothes.get_child(tile_index).find_node("Prim") != null:
+		get_child(tile_index).find_node("Prim").modulate = in_clothes.primColor
+		primColor = in_clothes.primColor
+	if in_clothes.get_child(tile_index).find_node("Seco") != null:
+		get_child(tile_index).find_node("Seco").modulate = in_clothes.secoColor
+		secoColor = in_clothes.secoColor
+	if in_clothes.get_child(tile_index).find_node("Tert") != null:
+		get_child(tile_index).find_node("Tert").modulate = in_clothes.tertColor
+		tertColor = in_clothes.tertColor
+	if in_clothes.get_child(tile_index).find_node("Quad") != null:
+		get_child(tile_index).find_node("Quad").modulate = in_clothes.quadColor
+		quadColor = in_clothes.quadColor
