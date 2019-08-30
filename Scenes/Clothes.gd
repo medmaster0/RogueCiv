@@ -35,6 +35,7 @@ func set_tile_index(index):
 		0:
 			#Angel... No need to set colors
 			get_child(index).visible = true
+			primColor = Color(1,1,1) #Don't change the color at all
 		1:
 			#Bandana
 			primColor = Color(randf(), randf(), randf())
@@ -68,6 +69,7 @@ func set_tile_index(index):
 		5:
 			#Demon... No need to set colors
 			get_child(index).visible = true
+			primColor = Color(1,1,1) #Don't change the color at all
 		6:
 			#Doc
 			primColor = MedAlgo.generate_pastel()
@@ -173,7 +175,7 @@ func set_tile_index(index):
 		19:
 			#Witch Doc... No need to set colors
 			get_child(index).visible = true
-			
+			primColor = Color(1,1,1) #Don't change the color at all
 			
 
 

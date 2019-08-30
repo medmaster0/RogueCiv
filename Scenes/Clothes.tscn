@@ -375,7 +375,6 @@ centered = false
 offset = Vector2( -8, -16 )
 
 [node name="WitchDoctor" type="Node2D" parent="."]
-editor/display_folded = true
 visible = false
 z_index = 1
 
