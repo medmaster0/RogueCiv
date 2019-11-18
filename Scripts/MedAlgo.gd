@@ -666,6 +666,45 @@ func generate_pastel():
 	return(pastel) 
 	
 
+#Generates a color who's channels are all above a threshhold
+func generate_darkenable_color(thresh):
+	var r = 0
+	while(true):
+		if r > thresh:
+			break
+		else:
+			r = randf()
+	var g = 0
+	while(true):
+		if g > thresh:
+			break
+		else:
+			g = randf()
+	var b = 0
+	while(true):
+		if b > thresh:
+			break
+		else:
+			b = randf()
+	
+	var color = Color(r,g,b)
+	return(color)
+
+##same as above, but you set a limit
+#func generate_pastel_limit(limit):
+#	var r = rand_range(limit, 1.0)
+#	var g = rand_range(limit, 1.0)
+#	var b = rand_range(limit, 1.0)
+#	var color = Color(r,g,b)
+#	return(color)
+#
+##same as above, but below limit
+#func generate_dark_limit(limit):
+#	var r = rand_range(0.0, limit)
+#	var g = rand_range(0.0, limit)
+#	var b = rand_range(0.0, limit)
+#	var color = Color(r,g,b)
+#	return(color)
 
 #COlor Algorithms...
 
@@ -713,3 +752,70 @@ func generateName():
 #CREATUVE NOTES>>>>
 #SOme name-endings
 #ex, liyah, fiah, ,,,,
+
+
+#Human(ish) stuff
+
+#Generate a random hair color
+#Selecte from three bases -> black, blonde, red
+func generate_hair_color():
+	
+	#The components to be generated/calculated
+	var r 
+	var g
+	var b
+	
+	var choice = randi()%3 #choose one of three hair colors...
+	match(choice):
+		0:	
+			#GOLDEN HAIR
+			r = rand_range(0.85,1)
+			g = rand_range(0.7,0.75)
+			b = 0
+
+		1:
+			#RED HAIR
+			#Red between 175 and 255 -> 0.69 and 1
+			#Green no more than 125 less than red -> 0.49
+			#Green at least 50 less than red -> 0.2
+			#No Blue
+			r = rand_range(0.69,1)
+			g = r - rand_range(0.2,0.49)
+			b = 0
+		
+		2:
+			#BLACK HAIR... Kinda color-tinted though
+			#Red can go up to 100 -> 0.39
+			#Green can only go up to 50 -> 0.2
+			#Blue can go up to 100 -> 0.39
+			r = rand_range(0,0.39)
+			g = rand_range(0,0.2)
+			b = rand_range(0,0.39)
+	
+	var hair_color = Color(r,g,b)
+	
+	return(hair_color)
+
+#Generate browns for skin colors
+#You start with a red between 175 and 245 -> 0.69 to 0.96
+#Then a constant delta is subrtracted for green
+#Then the same constant delta is subtracted for blue
+#Delta goes between 18 and 50 -> 0.07 to 0.2
+#BUT!!!!
+#Delta should be higher for lower red.... Under 200 -> 0.78
+#For lower, delta between 30 and 50 -> 0.12 to 0.2
+func generate_skin_color():
+	
+	var r = rand_range(0.60,0.96)
+	var delta #The delta we subtract from r for g, and from g for b
+	if r < 0.78:
+		delta = rand_range(0.12,0.2)
+	else:
+		delta = rand_range(0.07,0.2)
+	var g = r - delta
+	var b = g - delta
+	var skin_color = Color(r,g,b)
+
+	return(skin_color)
+	
+

@@ -7,6 +7,7 @@ extends Node2D
 export (PackedScene) var Pheasant
 export (PackedScene) var MajorArcWeapon
 export (PackedScene) var Item
+export (PackedScene) var BattleHuntItem
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,11 +23,11 @@ func _ready():
 #		temp_weapon.position = Vector2(randi()%int(get_viewport().size.x), randi()%int(get_viewport().size.y))
 #		add_child(temp_weapon)
 #
-#	for i in range(300):
-#		var temp_item = Item.instance()
-#		temp_item.position = Vector2(randi()%int(get_viewport().size.x), randi()%int(get_viewport().size.y))
-#		add_child(temp_item)
-#		temp_item.setTile(201 + randi()%15)
+	for i in range(300):
+		var temp_item = BattleHuntItem.instance()
+		temp_item.position = Vector2(randi()%int(get_viewport().size.x), randi()%int(get_viewport().size.y))
+		add_child(temp_item)
+		#temp_item.setTile(201 + randi()%15)
 
 	var temp_item = Item.instance()
 	temp_item.position = Vector2(16,16)

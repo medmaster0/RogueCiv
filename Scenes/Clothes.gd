@@ -17,8 +17,8 @@ var quadColor
 func _ready():
 	randomize()
 	
-	tile_index = randi()%20
-	#tile_index = 19
+	tile_index = randi()%21
+	#tile_index = 20
 	set_tile_index(tile_index)
 	
 	pass # Replace with function body.
@@ -176,7 +176,15 @@ func set_tile_index(index):
 			#Witch Doc... No need to set colors
 			get_child(index).visible = true
 			primColor = Color(1,1,1) #Don't change the color at all
-			
+		20:
+			#Welder
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = MedAlgo.generate_brown()
+			get_child(index).find_node("Prim").modulate = primColor
+			get_child(index).find_node("Seco").modulate = secoColor
+			get_child(index).find_node("Tert").modulate = tertColor
+			get_child(index).visible = true
 
 
 #Function that will copy all the parameters of a given nput clothes
