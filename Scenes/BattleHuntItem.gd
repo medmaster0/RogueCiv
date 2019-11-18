@@ -74,8 +74,10 @@ extends Node2D
 # 66 - WARGUN SS
 # 67 - WOOD DOLL
 
-
-
+# MISC
+# 68 - BRIEFCASE
+# 69 - LICENSE
+# 70 - CONTRACT
 
 
 
@@ -328,6 +330,15 @@ var wargunSSSeco = preload("res://Tiles//battle_hunt//wargun_ssSeco.png")
 var woodDoolPrim = preload("res://Tiles//battle_hunt//wood_dollPrim.png")
 var woodDoolSeco = preload("res://Tiles//battle_hunt//wood_dollSeco.png")
 
+var briefcasePrim = preload("res://Tiles//battle_hunt//briefcasePrim.png")
+var briefcaseSeco = preload("res://Tiles//battle_hunt//briefcaseSeco.png")
+var briefcaseTert = preload("res://Tiles//battle_hunt//briefcaseTert.png")
+
+var licensePrim = preload("res://Tiles//battle_hunt//licensePrim.png")
+var licenseSeco = preload("res://Tiles//battle_hunt//licenseSeco.png")
+
+var contractPrim = preload("res://Tiles//battle_hunt//contractPrim.png")
+
 #Class Variables
 var primColor
 var secoColor
@@ -347,7 +358,7 @@ func _ready():
 	#Pick random tile_index (set here for debug purposesssss)
 	tile_index = randi()%68
 	#tile_index = 27 + randi()%3
-	#tile_index = 67
+	tile_index = 70
 	setTile(tile_index)
 	
 	pass # Replace with function body.
@@ -1374,6 +1385,52 @@ func setTile(in_tile_index):
 			$Quin.texture = null
 			$Sext.texture = null
 			primColor = MedAlgo.generate_darkenable_color(0.2)
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		##############   MISC
+		68:
+			#BRIEFCASE
+			item_name = "briefcase"
+			$Prim.texture = briefcasePrim
+			$Seco.texture = briefcaseSeco
+			$Tert.texture = briefcaseTert
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			secoColor = MedAlgo.generate_brown()
+			primColor = MedAlgo.color_shift(secoColor,0.17)
+			tertColor = MedAlgo.generate_darkenable_color(0.7)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		69:
+			#LICENSE
+			item_name = "license"
+			$Prim.texture = licensePrim
+			$Seco.texture = licenseSeco
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = MedAlgo.generate_pastel()
+			secoColor = MedAlgo.generate_darkenable_color(0.4)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		70:
+			#CONTRACT
+			item_name = "contract"
+			$Prim.texture = contractPrim
+			$Seco.texture = null
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = MedAlgo.generate_pastel()
 			secoColor = Color(1,1,1)
 			tertColor = Color(1,1,1)
 			quadColor = Color(1,1,1)
