@@ -11,6 +11,7 @@ extends Node2D
 # 3 - CAN
 # 4 - LADDER HOLE
 # 5 - FLAG
+# 6 - POWDER
 ######## BUILDING ITEMS
 # 101 - FLOOR
 # 102 - WALL
@@ -50,6 +51,8 @@ var canSeco = preload("res://Tiles//item//canSeco.png")
 var ladderHolePrim = preload("res://Tiles//scenery//ladderHolePrim.png")
 var flagPrim = preload("res://Tiles//scenery//flagPrim.png")
 var flagSeco = preload("res://Tiles//scenery//flagSeco.png")
+var bagPrim = preload("res://Tiles//item//bagPrim.png")
+var bagSeco = preload("res://Tiles//item//bagSeco.png")
 
 #Building Resources Load
 var floorPrim = preload("res://Tiles//scenery//adobePrim.png")
@@ -174,6 +177,12 @@ func setTile(in_tile_index):
 			item_name = "flag"
 			$Prim.texture = flagPrim
 			$Seco.texture = flagSeco
+			$Tert.texture = null
+		6:
+			#POWDER
+			item_name = "powder"
+			$Prim.texture = bagPrim
+			$Seco.texture = bagSeco
 			$Tert.texture = null
 		######BUILDING SHIT
 		101:

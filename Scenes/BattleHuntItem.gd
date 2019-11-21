@@ -1,5 +1,5 @@
-extends Node2D
 
+extends Node2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -79,9 +79,56 @@ extends Node2D
 # 69 - LICENSE
 # 70 - CONTRACT
 
+# ITEMS (BY SLYMI)
+########################
 
+# GENERAL
+# 101 - BAG
+# 102 - BATTERY
+# 103 - BOMB
+# 104 - BONE
+# 105 - CAN
+# 106 - CHALICE
+# 107 - COIN
+# 108 - DAGGER
+# 109 - DROP
+# 110 - EGG
+# 111 - FISH
+# 112 - FLOWER
+# 113 - FRUIT
+# 114 - GEM
+# 115 - GIFT
+# 116 - HOOK
+# 117 - KNIFE
+# 118 - LADDER
+# 119 - MAILBOX
+# 120 - MAIL
+# 121 - MANUAL
+# 122 - PERFUME
+# 123 - PILL (1)
+# 124 - PILL (2)
+# 125 - POTION
+# 126 - QUILL
+# 127 - SIGN
+# 128 - STONE
+# 129 - TELESCOPE
+# 130 - WAND
+# 131 - WEED
+# 132 - WINE
+# 133 - WRITING
 
+# COOKING
+# 201 - CHERRY
+# 202 - CUPCAKE
+# 203 - HEART
+# 204 - MEAT
+# 205 - STEAK
 
+# SEXY
+# 301 - BRA
+# 302 - HEELS
+# 303 - PURSE
+# 304 - THONG
 
 
 
@@ -339,6 +386,134 @@ var licenseSeco = preload("res://Tiles//battle_hunt//licenseSeco.png")
 
 var contractPrim = preload("res://Tiles//battle_hunt//contractPrim.png")
 
+################LOAD SLYMI ITEMS
+
+##########General
+var bagPrimItem = preload("res://Tiles//item//bagPrim.png")
+var bagSecoItem = preload("res://Tiles//item//bagSeco.png")
+
+var batteryPrimItem = preload("res://Tiles//item//batteryPrim.png")
+var batterySecoItem = preload("res://Tiles//item//batterySeco.png")
+var batteryTertItem = preload("res://Tiles//item//batteryTert.png")
+
+var bombPrimItem = preload("res://Tiles//item//bombPrim.png")
+var bombSecoItem = preload("res://Tiles//item//bombSeco.png")
+
+var bonePrimItem = preload("res://Tiles//item//bonePrim.png")
+
+var canPrimItem = preload("res://Tiles//item//canPrim.png")
+var canSecoItem = preload("res://Tiles//item//canSeco.png")
+
+var chalicePrimItem = preload("res://Tiles//item//chalicePrim.png")
+var chaliceSecoItem = preload("res://Tiles//item//chaliceSeco.png")
+
+var coinPrimItem = preload("res://Tiles//item//coinPrim.png")
+var coinSecoItem = preload("res://Tiles//item//coinSeco.png")
+
+var daggerPrimItem = preload("res://Tiles//item//daggerPrim.png")
+var daggerSecoItem = preload("res://Tiles//item//daggerSeco.png")
+
+var dropPrimItem = preload("res://Tiles//item//drop.png")
+
+var eggPrimItem = preload("res://Tiles//item//eggPrim.png")
+var eggSecoItem = preload("res://Tiles//item//eggSeco.png")
+
+var fishPrimItem = preload("res://Tiles//item//fishPrim.png")
+var fishSecoItem = preload("res://Tiles//item//fishSeco.png")
+var fishTertItem = preload("res://Tiles//item//fishTert.png")
+
+var flowerPrimItem = preload("res://Tiles//item//flowerPrim.png")
+var flowerSecoItem = preload("res://Tiles//item//flowerSeco.png")
+
+var fruitPrimItem = preload("res://Tiles//item//fruitPrim.png")
+var fruitSecoItem = preload("res://Tiles//item//fruitSeco.png")
+
+var gemPrimItem = preload("res://Tiles//item//gemPrim.png")
+
+var giftPrimItem = preload("res://Tiles//item//giftPrim.png")
+var giftSecoItem = preload("res://Tiles//item//giftSeco.png")
+
+var hookPrimItem = preload("res://Tiles//item//hook.png")
+
+var knifePrimItem = preload("res://Tiles//item//knifePrim.png")
+var knifeSecoItem = preload("res://Tiles//item//knifeSeco.png")
+
+var ladderPrimItem = preload("res://Tiles//item//ladderPrim.png")
+
+var mailboxPrimItem = preload("res://Tiles//item//mailboxPrim.png")
+var mailboxSecoItem = preload("res://Tiles//item//mailboxSeco.png")
+
+var mailPrimItem = preload("res://Tiles//item//mailPrim.png")
+var mailSecoItem = preload("res://Tiles//item//mailSeco.png")
+
+var manualPrimItem = preload("res://Tiles//item//manualPrim.png")
+var manualSecoItem = preload("res://Tiles//item//manualSeco.png")
+
+var perfumePrimItem = preload("res://Tiles//item//perfumePrim.png")
+var perfumeSecoItem = preload("res://Tiles//item//perfumeSeco.png")
+var perfumeTertItem = preload("res://Tiles//item//perfumeTert.png")
+
+var pill1PrimItem = preload("res://Tiles//item//pill1Prim.png")
+var pill1SecoItem = preload("res://Tiles//item//pill1Seco.png")
+
+var pill2PrimItem = preload("res://Tiles//item//pill2Prim.png")
+var pill2SecoItem = preload("res://Tiles//item//pill2Seco.png")
+
+var potionPrimItem = preload("res://Tiles//item//potionPrim.png")
+var potionSecoItem = preload("res://Tiles//item//potionSeco.png")
+
+var quillPrimItem = preload("res://Tiles//item//quillPrim.png")
+var quillSecoItem = preload("res://Tiles//item//quillSeco.png")
+
+var signPrimItem = preload("res://Tiles//item//signPrim.png")
+
+var stonePrimItem = preload("res://Tiles//item//stonePrim.png")
+var stoneSecoItem = preload("res://Tiles//item//stoneSeco.png")
+
+var telescopePrimItem = preload("res://Tiles//item//telescopePrim.png")
+var telescopeSecoItem = preload("res://Tiles//item//telescopeSeco.png")
+
+var wandPrimItem = preload("res://Tiles//item//wandPrim.png")
+var wandSecoItem = preload("res://Tiles//item//wandSeco.png")
+var wandTertItem = preload("res://Tiles//item//wandTert.png")
+
+var weedPrimItem = preload("res://Tiles//item//weedPrim.png")
+var weedSecoItem = preload("res://Tiles//item//weedSeco.png")
+
+var winePrimItem = preload("res://Tiles//item//winePrim.png")
+var wineSecoItem = preload("res://Tiles//item//wineSeco.png")
+
+var writingPrimItem = preload("res://Tiles//item//writingPrim.png")
+var writingSecoItem = preload("res://Tiles//item//writingSeco.png")
+
+#######Cooking
+var cherryPrimItem = preload("res://Tiles//item//cooking//cherryPrim.png")
+
+var cupcakePrimItem = preload("res://Tiles//item//cooking//cupcakePrim.png")
+var cupcakeSecoItem = preload("res://Tiles//item//cooking//cupcakeSeco.png")
+var cupcakeTertItem = preload("res://Tiles//item//cooking//cupcakeTert.png")
+
+var heartPrimItem = preload("res://Tiles//item//cooking//heartPrim.png")
+
+var meatPrimItem = preload("res://Tiles//item//cooking//meatPrim.png")
+var meatSecoItem = preload("res://Tiles//item//cooking//meatSeco.png")
+
+var steakPrimItem = preload("res://Tiles//item//cooking//steakPrim.png")
+var steakSecoItem = preload("res://Tiles//item//cooking//steakSeco.png")
+
+#######Sexy
+var braPrimItem = preload("res://Tiles//item//sexy//braPrim.png")
+var braSecoItem = preload("res://Tiles//item//sexy//braSeco.png")
+
+var heelsPrimItem = preload("res://Tiles//item//sexy//heelsPrim.png")
+var heelsSecoItem = preload("res://Tiles//item//sexy//heelsSeco.png")
+
+var pursePrimItem = preload("res://Tiles//item//sexy//pursePrim.png")
+var purseSecoItem = preload("res://Tiles//item//sexy//purseSeco.png")
+
+var thongPrimItem = preload("res://Tiles//item//sexy//thongPrim.png")
+var thongSecoItem = preload("res://Tiles//item//sexy//thongSeco.png")
+
 #Class Variables
 var primColor
 var secoColor
@@ -358,7 +533,7 @@ func _ready():
 	#Pick random tile_index (set here for debug purposesssss)
 	tile_index = randi()%68
 	#tile_index = 27 + randi()%3
-	tile_index = 70
+	tile_index = 304
 	setTile(tile_index)
 	
 	pass # Replace with function body.
@@ -1436,6 +1611,644 @@ func setTile(in_tile_index):
 			quadColor = Color(1,1,1)
 			quinColor = Color(1,1,1)
 			sextColor = Color(1,1,1)
+
+		################ SLYMI ITEMS
+		##GENERAL
+		101:
+			#BAG
+			item_name = "bag"
+			$Prim.texture = bagPrimItem
+			$Seco.texture = bagSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		102:
+			#BATTERY
+			item_name = "battery"
+			$Prim.texture = batteryPrimItem
+			$Seco.texture = batterySecoItem
+			$Tert.texture = batteryTertItem
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = MedAlgo.generate_pastel()
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		103:
+			#BOMB
+			item_name = "bomb"
+			$Prim.texture = bombPrimItem
+			$Seco.texture = bombSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		104:
+			#BONE
+			item_name = "bone"
+			$Prim.texture = bonePrimItem
+			$Seco.texture = null
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = MedAlgo.generate_darkenable_color(0.5)
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		105:
+			#CAN
+			item_name = "can"
+			$Prim.texture = canPrimItem
+			$Seco.texture = canSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		106:
+			#CHALICE
+			item_name = "chalice"
+			$Prim.texture = chalicePrimItem
+			$Seco.texture = chaliceSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		107:
+			#COIN
+			item_name = "coin"
+			$Prim.texture = coinPrimItem
+			$Seco.texture = coinSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		108:
+			#DAGGER
+			item_name = "dagger"
+			$Prim.texture = daggerPrimItem
+			$Seco.texture = daggerSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		109:
+			#DROP
+			item_name = "drop"
+			$Prim.texture = dropPrimItem
+			$Seco.texture = null
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		110:
+			#EGG
+			item_name = "egg"
+			$Prim.texture = eggPrimItem
+			$Seco.texture = eggSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		111:
+			#FISH
+			item_name = "fish"
+			$Prim.texture = fishPrimItem
+			$Seco.texture = fishSecoItem
+			$Tert.texture = fishTertItem
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		112:
+			#FLOWER
+			item_name = "flower"
+			$Prim.texture = flowerPrimItem
+			$Seco.texture = flowerSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		113:
+			#FRUIT
+			item_name = "fruit"
+			$Prim.texture = fruitPrimItem
+			$Seco.texture = fruitSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = MedAlgo.generate_brown()
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		114:
+			#GEM
+			item_name = "gem"
+			$Prim.texture = gemPrimItem
+			$Seco.texture = null
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		115:
+			#GIFT
+			item_name = "gift"
+			$Prim.texture = giftPrimItem
+			$Seco.texture = giftSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		116:
+			#HOOK
+			item_name = "hook"
+			$Prim.texture = hookPrimItem
+			$Seco.texture = null
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		117:
+			#KNIFE
+			item_name = "knife"
+			$Prim.texture = knifePrimItem
+			$Seco.texture = knifeSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		118:
+			#LADDER
+			item_name = "ladder"
+			$Prim.texture = ladderPrimItem
+			$Seco.texture = null
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		119:
+			#MAILBOX
+			item_name = "mailbox"
+			$Prim.texture = mailboxPrimItem
+			$Seco.texture = mailboxSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		120:
+			#MAIL
+			item_name = "mail"
+			$Prim.texture = mailPrimItem
+			$Seco.texture = mailSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		121:
+			#MANUAL
+			item_name = "manual"
+			$Prim.texture = manualPrimItem
+			$Seco.texture = manualSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		122:
+			#PERFUME
+			item_name = "perfume"
+			$Prim.texture = perfumePrimItem
+			$Seco.texture = perfumeSecoItem
+			$Tert.texture = perfumeTertItem
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(randf(), randf(), randf())
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		123:
+			#PILL (1)
+			item_name = "pill"
+			$Prim.texture = pill1PrimItem
+			$Seco.texture = pill1SecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		124:
+			#PILL (2)
+			item_name = "pill"
+			$Prim.texture = pill2PrimItem
+			$Seco.texture = pill2SecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		125:
+			#POTION
+			item_name = "potion"
+			$Prim.texture = potionPrimItem
+			$Seco.texture = potionSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		126:
+			#QUILL
+			item_name = "quill"
+			$Prim.texture = quillPrimItem
+			$Seco.texture = quillSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		127:
+			#SIGN
+			item_name = "sign"
+			$Prim.texture = signPrimItem
+			$Seco.texture = null
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		128:
+			#STONE
+			item_name = "stone"
+			$Prim.texture = stonePrimItem
+			$Seco.texture = stoneSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		129:
+			#TELESCOPE
+			item_name = "telescope"
+			$Prim.texture = telescopePrimItem
+			$Seco.texture = telescopeSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		130:
+			#WAND
+			item_name = "wand"
+			$Prim.texture = wandPrimItem
+			$Seco.texture = wandSecoItem
+			$Tert.texture = wandTertItem
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		131:
+			#WEED
+			item_name = "weed"
+			$Prim.texture = weedPrimItem
+			$Seco.texture = weedSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		132:
+			#WINE
+			item_name = "wine"
+			$Prim.texture = winePrimItem
+			$Seco.texture = wineSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		133:
+			#WRITING
+			item_name = "writing"
+			$Prim.texture = writingPrimItem
+			$Seco.texture = writingSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+			
+		##########COOKING
+		201:
+			#CHERRY
+			item_name = "cherry"
+			$Prim.texture = cherryPrimItem
+			$Seco.texture = null
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		202:
+			#CUPCAKE
+			item_name = "cupcake"
+			$Prim.texture = cupcakePrimItem
+			$Seco.texture = cupcakeSecoItem
+			$Tert.texture = cupcakeTertItem
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(randf(), randf(), randf())
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		203:
+			#HEART
+			item_name = "heart"
+			$Prim.texture = heartPrimItem
+			$Seco.texture = null
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		204:
+			#MEAT
+			item_name = "meat"
+			$Prim.texture = meatPrimItem
+			$Seco.texture = meatSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		205:
+			#STEAK
+			item_name = "steak"
+			$Prim.texture = steakPrimItem
+			$Seco.texture = steakSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(1,1,1)
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		
+		###SEXY
+		301:
+			#BRA
+			item_name = "bra"
+			$Prim.texture = braPrimItem
+			$Seco.texture = braSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		302:
+			#HEELS
+			item_name = "heels"
+			$Prim.texture = heelsPrimItem
+			$Seco.texture = heelsSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		303:
+			#PURSE
+			item_name = "purse"
+			$Prim.texture = pursePrimItem
+			$Seco.texture = purseSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		304:
+			#THONG
+			item_name = "thong"
+			$Prim.texture = thongPrimItem
+			$Seco.texture = thongSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+
 
 	#Update Colors...
 	$Prim.modulate = primColor
