@@ -130,6 +130,10 @@ extends Node2D
 # 303 - PURSE
 # 304 - THONG
 
+# FURNITURE (PART OF SCENERY)
+# 401 - CRYSTAL BALL
+# 402 - BED
+# 403 - 
 
 
 #LOAD UP ALL THE SPRITES!!!
@@ -514,6 +518,14 @@ var purseSecoItem = preload("res://Tiles//item//sexy//purseSeco.png")
 var thongPrimItem = preload("res://Tiles//item//sexy//thongPrim.png")
 var thongSecoItem = preload("res://Tiles//item//sexy//thongSeco.png")
 
+### Furniture (Part of "Scenery")
+var crystalBallPrimItem = preload("res://Tiles//scenery//crystalBallPrim.png")
+var crystalBallSecoItem = preload("res://Tiles//scenery//crystalBallSeco.png")
+
+var bedPrimItem = preload("res://Tiles//scenery//bedPrim.png")
+var bedSecoItem = preload("res://Tiles//scenery//bedSeco.png")
+var bedTertItem = preload("res://Tiles//scenery//bedTert.png")
+
 #Class Variables
 var primColor
 var secoColor
@@ -533,7 +545,7 @@ func _ready():
 	#Pick random tile_index (set here for debug purposesssss)
 	tile_index = randi()%68
 	#tile_index = 27 + randi()%3
-	tile_index = 304
+	tile_index = 402
 	setTile(tile_index)
 	
 	pass # Replace with function body.
@@ -2248,6 +2260,37 @@ func setTile(in_tile_index):
 			quadColor = Color(1,1,1)
 			quinColor = Color(1,1,1)
 			sextColor = Color(1,1,1)
+		##FURNITURE
+		401:
+			#CRYSTAL BALL
+			item_name = "crystal ball"
+			$Prim.texture = crystalBallPrimItem
+			$Seco.texture = crystalBallSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = MedAlgo.generate_pastel()
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		402:
+			#BED
+			item_name = "bed"
+			$Prim.texture = bedPrimItem
+			$Seco.texture = bedSecoItem
+			$Tert.texture = bedTertItem
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = MedAlgo.generate_pastel()
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
 
 
 	#Update Colors...
@@ -2257,3 +2300,32 @@ func setTile(in_tile_index):
 	$Quad.modulate = quadColor
 	$Quin.modulate = quinColor
 	$Sext.modulate = sextColor
+
+#CLASS FUNCS
+func SetPrimColor(color):
+	primColor = color
+	$Prim.modulate = primColor
+
+func SetSecoColor(color):
+	secoColor = color
+	$Seco.modulate = secoColor
+	
+func SetTertColor(color):
+	tertColor = color
+	$Tert.modulate = tertColor
+	
+func SetQuadColor(color):
+	quadColor = color
+	$Quad.modulate = quadColor
+
+func SetQuinColor(color):
+	quinColor = color
+	$Quin.modulate = quinColor
+	
+func SetSextColor(color):
+	sextColor = color
+	$Sext.modulate = sextColor
+
+func _on_SelectButton_pressed():
+	get_parent().DisplayItem(self)
+

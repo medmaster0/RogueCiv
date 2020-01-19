@@ -690,6 +690,57 @@ func generate_darkenable_color(thresh):
 	var color = Color(r,g,b)
 	return(color)
 
+
+#Generate reddish browns for dirt
+#Basically a hack of generate skin color, but we add more red at the end...
+func generate_dirt_color():
+	
+	var r = rand_range(0.60,0.87)
+	var delta #The delta we subtract from r for g, and from g for b
+	if r < 0.78:
+		delta = rand_range(0.12,0.2)
+	else:
+		delta = rand_range(0.07,0.2)
+	var g = r - delta
+	var b = g - delta
+	
+	#***ALSO add more red
+	r = r + rand_range(0,0.13)
+	#Alo bllue
+	b = b + rand_range(0,0.09)
+	
+	var dirt_color = Color(r,g,b)
+
+	
+
+	return(dirt_color)
+
+#A collection of patterns and stuff made by me, MED
+
+#Make a dirt color look wet
+#Subtract the following constants from r,g,b:
+#respectively: 0.04, 0.16, 0.22
+func wet_dirt(dirt_brown):
+	var r = dirt_brown.r - 0.04
+	var g = dirt_brown.g - 0.16
+	var b = dirt_brown.b - 0.22
+	
+	var wet_dirt_color = Color(r,g,b)
+	return(wet_dirt_color)
+
+
+#A function for generating water colors...
+#The colors should be between 75 and 200 ->> 0.29 and 0.78...
+#But, BLUE should be highest...
+func generate_water_color():
+	var b = rand_range(0.32,0.78)
+	var r = rand_range(0.3,0.78)
+	var g = rand_range(0.29,0.78)
+	var water_color = Color(r,g,b)
+	return(water_color)
+
+
+
 ##same as above, but you set a limit
 #func generate_pastel_limit(limit):
 #	var r = rand_range(limit, 1.0)

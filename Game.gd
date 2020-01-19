@@ -37,8 +37,8 @@ var map_width #the size of the map (in cells/tiles) SCREEN DIMS!!
 var map_height #the size of the map (in cells/tiles) SCREEN DIMS!!
 var cell_size #the amount of pixels in a cell/tile
 #BROADER WORLD VARS
-var max_x_block = 7
-var max_y_block = 7
+var max_x_block = 17
+var max_y_block = 17
 var max_x_map = 8 * max_x_block #How big the generated map is... (8 tiles per block)
 var max_y_map = 8 * max_y_block
 var min_x_map = 0
