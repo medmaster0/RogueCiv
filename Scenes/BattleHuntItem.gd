@@ -137,6 +137,9 @@ extends Node2D
 # 404 - TALL DRESSER
 # 405 - CHEST
 # 406 - FURNACE
+# 407 - TABLE
+# 408 - RIGHT CHAIR
+# 409 - LEFT CHAIR
 
 
 #LOAD UP ALL THE SPRITES!!!
@@ -541,6 +544,15 @@ var chestSecoItem = preload("res://Tiles//scenery//chestSeco.png")
 var furnacePrimItem = preload("res://Tiles//scenery//furnacePrim.png")
 var furnaceSecoItem = preload("res://Tiles//scenery//furnaceSeco.png")
 
+var tablePrimItem = preload("res://Tiles//scenery//tablePrim.png")
+var tableSecoItem = preload("res://Tiles//scenery//tableSeco.png")
+
+var rightChairPrimItem = preload("res://Tiles//scenery//rightChairPrim.png")
+var rightChairSecoItem = preload("res://Tiles//scenery//rightChairSeco.png")
+
+var leftChairPrimItem = preload("res://Tiles//scenery//leftChairPrim.png")
+var leftChairSecoItem = preload("res://Tiles//scenery//leftChairSeco.png")
+
 #Class Variables
 var primColor
 var secoColor
@@ -560,7 +572,7 @@ func _ready():
 	#Pick random tile_index (set here for debug purposesssss)
 	tile_index = randi()%68
 	#tile_index = 27 + randi()%3
-	tile_index = 406
+	tile_index = 407 + randi()%3
 	setTile(tile_index)
 	
 	pass # Replace with function body.
@@ -2366,7 +2378,51 @@ func setTile(in_tile_index):
 			quadColor = Color(1,1,1)
 			quinColor = Color(1,1,1)
 			sextColor = Color(1,1,1)
-
+		407:
+			#TABLE
+			item_name = "table"
+			$Prim.texture = tablePrimItem
+			$Seco.texture = tableSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		408:
+			#RIGHT CHAIR
+			item_name = "chair"
+			$Prim.texture = rightChairPrimItem
+			$Seco.texture = rightChairSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		409:
+			#LEFT CHAIR
+			item_name = "chair"
+			$Prim.texture = leftChairPrimItem
+			$Seco.texture = leftChairSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
 
 	#Update Colors...
 	$Prim.modulate = primColor

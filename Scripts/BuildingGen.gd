@@ -33,6 +33,9 @@ extends Node
 #	6 - DESK
 #	7 - FURNITURE ITEM
 #	8 - FURNITURE STORAGE
+#	9 - left chair
+# 	10 - table
+#	11 - right chair
 # 
 #Will return a 2D array with the following pattern
 # A 8 x 8 ARRAY
@@ -62,8 +65,11 @@ func gen_building_plot_map():
 	#Place the LADDER
 	building_map_plot[4][3] = 4
 	
-	#Place the DESK
-#	building_map_plot[3][5] = 6
+	#Place the TABLESET
+	building_map_plot[5][3] = 9
+	building_map_plot[5][4] = 10
+	building_map_plot[5][5] = 11
+	
 	
 	#Place a random FURNITURE BIG ITEM
 	building_map_plot[2][5] = 7
@@ -130,6 +136,8 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 	var ladderPrim = Color(randf(), randf(), randf())
 #	var crystalBallPrim = Color(randf(), randf(), randf())
 #	var crystalBallSeco = Color(randf(), randf(), randf())
+	var tablesetPrim = Color(randf(), randf(), randf())
+	var tablesetSeco = Color(randf(), randf(), randf())
 	
 	#Read through the map - NOTE THE ORDER OF ROWS/COLS!!!
 	for i in range(building_map.size()): #rows, y-dim
@@ -283,6 +291,66 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 					temp_item.setTile(item_choice)
 					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
 					temp_item.z_index = z_coord - 1
+				9:  #LEFT CHAIR
+					#Create floor item first
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(101)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(floorPrim)
+					temp_item.SetSecoColor(floorSeco)
+					temp_item.find_node("SelectButton").visible = false
+					temp_item.z_index = z_coord - 1
+					#List of eligible items
+					temp_item = BattleHuntItem.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(409)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.z_index = z_coord - 1
+					temp_item.SetPrimColor(tablesetPrim)
+					temp_item.SetSecoColor(tablesetSeco)
+				10:  #TABLE
+					#Create floor item first
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(101)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(floorPrim)
+					temp_item.SetSecoColor(floorSeco)
+					temp_item.find_node("SelectButton").visible = false
+					temp_item.z_index = z_coord - 1
+					#List of eligible items
+					temp_item = BattleHuntItem.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(407)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.z_index = z_coord - 1
+					temp_item.SetPrimColor(tablesetPrim)
+					temp_item.SetSecoColor(tablesetSeco)
+				11:  #RIGHT CHAIR
+					#Create floor item first
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(101)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(floorPrim)
+					temp_item.SetSecoColor(floorSeco)
+					temp_item.find_node("SelectButton").visible = false
+					temp_item.z_index = z_coord - 1
+					#List of eligible items
+					temp_item = BattleHuntItem.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(408)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.z_index = z_coord - 1
+					temp_item.SetPrimColor(tablesetPrim)
+					temp_item.SetSecoColor(tablesetSeco)
 
 #Function to put down a street block....
 #give it the desired block type
