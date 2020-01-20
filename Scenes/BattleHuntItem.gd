@@ -133,7 +133,10 @@ extends Node2D
 # FURNITURE (PART OF SCENERY)
 # 401 - CRYSTAL BALL
 # 402 - BED
-# 403 - 
+# 403 - SHORT DRESSER
+# 404 - TALL DRESSER
+# 405 - CHEST
+# 406 - FURNACE
 
 
 #LOAD UP ALL THE SPRITES!!!
@@ -526,6 +529,18 @@ var bedPrimItem = preload("res://Tiles//scenery//bedPrim.png")
 var bedSecoItem = preload("res://Tiles//scenery//bedSeco.png")
 var bedTertItem = preload("res://Tiles//scenery//bedTert.png")
 
+var shortDresserPrimItem = preload("res://Tiles//scenery//shortDresserPrim.png")
+var shortDresserSecoItem = preload("res://Tiles//scenery//shortDresserSeco.png")
+
+var tallDresserPrimItem = preload("res://Tiles//scenery//tallDresserPrim.png")
+var tallDresserSecoItem = preload("res://Tiles//scenery//tallDresserSeco.png")
+
+var chestPrimItem = preload("res://Tiles//scenery//chestPrim.png")
+var chestSecoItem = preload("res://Tiles//scenery//chestSeco.png")
+
+var furnacePrimItem = preload("res://Tiles//scenery//furnacePrim.png")
+var furnaceSecoItem = preload("res://Tiles//scenery//furnaceSeco.png")
+
 #Class Variables
 var primColor
 var secoColor
@@ -545,7 +560,7 @@ func _ready():
 	#Pick random tile_index (set here for debug purposesssss)
 	tile_index = randi()%68
 	#tile_index = 27 + randi()%3
-	tile_index = 402
+	tile_index = 406
 	setTile(tile_index)
 	
 	pass # Replace with function body.
@@ -2270,7 +2285,7 @@ func setTile(in_tile_index):
 			$Quad.texture = null
 			$Quin.texture = null
 			$Sext.texture = null
-			primColor = MedAlgo.generate_pastel()
+			primColor = Color(randf(), randf(), randf())
 			secoColor = Color(randf(), randf(), randf())
 			tertColor = Color(1,1,1)
 			quadColor = Color(1,1,1)
@@ -2288,6 +2303,66 @@ func setTile(in_tile_index):
 			primColor = Color(randf(), randf(), randf())
 			secoColor = Color(randf(), randf(), randf())
 			tertColor = MedAlgo.generate_pastel()
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		403:
+			#SHORT DRESSER
+			item_name = "dresser"
+			$Prim.texture = shortDresserPrimItem
+			$Seco.texture = shortDresserSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		404:
+			#TALL DRESSER
+			item_name = "dresser"
+			$Prim.texture = tallDresserPrimItem
+			$Seco.texture = tallDresserSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		405:
+			#CHEST
+			item_name = "chest"
+			$Prim.texture = chestPrimItem
+			$Seco.texture = chestSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = Color(randf(), randf(), randf())
+			secoColor = Color(randf(), randf(), randf())
+			tertColor = Color(1,1,1)
+			quadColor = Color(1,1,1)
+			quinColor = Color(1,1,1)
+			sextColor = Color(1,1,1)
+		406:
+			#FURNACE
+			item_name = "furnace"
+			$Prim.texture = furnacePrimItem
+			$Seco.texture = furnaceSecoItem
+			$Tert.texture = null
+			$Quad.texture = null
+			$Quin.texture = null
+			$Sext.texture = null
+			primColor = MedAlgo.color_shift(MedAlgo.generate_darkenable_color(0.5),-0.5)
+			secoColor = MedAlgo.generate_darkenable_color(0.7)
+			tertColor = Color(1,1,1)
 			quadColor = Color(1,1,1)
 			quinColor = Color(1,1,1)
 			sextColor = Color(1,1,1)

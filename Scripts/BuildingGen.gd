@@ -32,6 +32,7 @@ extends Node
 #	5 - FLAG
 #	6 - DESK
 #	7 - FURNITURE ITEM
+#	8 - FURNITURE STORAGE
 # 
 #Will return a 2D array with the following pattern
 # A 8 x 8 ARRAY
@@ -64,8 +65,11 @@ func gen_building_plot_map():
 	#Place the DESK
 #	building_map_plot[3][5] = 6
 	
-	#Place a random FURNITURE ITEM
+	#Place a random FURNITURE BIG ITEM
 	building_map_plot[2][5] = 7
+	
+	#Place a random FURNITURE STORAGE ITEM
+	building_map_plot[2][4] = 8
 	
 	#PLACE DOORS
 	building_map_plot[3][1] = 3
@@ -251,7 +255,27 @@ func put_items_building_plot(game_scene, x_coord_global, y_coord_global, z_coord
 					temp_item.find_node("SelectButton").visible = false
 					temp_item.z_index = z_coord - 1
 					#List of eligible items
-					var furniture_items = [401,402]
+					var furniture_items = [401,402,406]
+					var item_choice = furniture_items[randi()%furniture_items.size()]
+					temp_item = BattleHuntItem.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(item_choice)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.z_index = z_coord - 1
+				8:  #RANDOM STORAGE FURNITURE ITEM (FROM BATTLE HUNT)
+					#Create floor item first
+					temp_item = Item.instance()
+					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
+					game_scene.add_child(temp_item)
+					temp_item.setTile(101)
+					game_scene.map_buildings[temp_x_coord_map][temp_y_coord_map][z_coord].append(temp_item)
+					temp_item.SetPrimColor(floorPrim)
+					temp_item.SetSecoColor(floorSeco)
+					temp_item.find_node("SelectButton").visible = false
+					temp_item.z_index = z_coord - 1
+					#List of eligible items
+					var furniture_items = [403,404,405]
 					var item_choice = furniture_items[randi()%furniture_items.size()]
 					temp_item = BattleHuntItem.instance()
 					temp_item.position = Vector2(temp_x_coord_global,temp_y_coord_global)
