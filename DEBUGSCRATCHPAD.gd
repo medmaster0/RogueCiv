@@ -8,6 +8,7 @@ export (PackedScene) var Pheasant
 export (PackedScene) var MajorArcWeapon
 export (PackedScene) var Item
 export (PackedScene) var BattleHuntItem
+export (PackedScene) var Creature
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

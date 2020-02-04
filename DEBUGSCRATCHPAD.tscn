@@ -13,6 +13,7 @@ Pheasant = ExtResource( 2 )
 MajorArcWeapon = ExtResource( 3 )
 Item = ExtResource( 4 )
 BattleHuntItem = ExtResource( 5 )
+Creature = ExtResource( 6 )
 
 [node name="Pheasant" parent="." instance=ExtResource( 2 )]
 position = Vector2( 58.2222, 46.2222 )
